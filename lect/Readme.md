@@ -5,10 +5,14 @@
 
 ## 강의다시보기
 
-1주차특강 | 숏폼제작 | 유튜브링크
-:---:|---------|:---:
-1주차특강 | 숏폼제작 | [[다시보기]][1주차특강] 
+NO | 1주차특강 | 숏폼제작 | 유튜브링크
+:---:|:---:|---------|:---:
+0 | 오파독OT | 숏폼제작 | [[다시보기]][오파독OT] 
+1 | 1주차특강 | 숏폼제작 | [[다시보기]][1주차강의] 
+2 | 1주차특강 | 숏폼제작 | [[다시보기]][1주차특강] 
 
-
+[구글미트]: https://meet.google.com/qxo-sjvg-tci
+[오파독OT]: https://www.youtube.com/watch?v=Xovh7WHsu4s
+[1주차강의]: https://www.youtube.com/watch?v=c2HATlMxsvU
 [1주차특강]: https://www.youtube.com/watch?v=RjUa2WqnvZg
 
