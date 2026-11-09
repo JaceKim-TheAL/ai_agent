@@ -18,7 +18,7 @@ NO   | 강의순서  | 강의주제 | 강의노트 | 유튜브링크
 ---
 ### 강의커리큘럼
 
-<img src="./img/강의커리큘럼_1.png">
+<img src="./img/강의커리큘럼_1.png" width="800">
 <br/>
 <img src="./img/강의커리큘럼_2.png" width="800">
 
