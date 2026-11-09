@@ -15,3 +15,9 @@ NO   | 강의순서  | 강의주제 | 강의노트 | 유튜브링크
 [1주차강의]: https://www.youtube.com/watch?v=c2HATlMxsvU
 [1주차특강]: https://www.youtube.com/watch?v=RjUa2WqnvZg
 
+### 강의커리큘럼
+
+<img src="./img/강의커리큘럼_1.png" width="50%">
+
+<img src="./img/강의커리큘럼_2.png" width="50%">
+
