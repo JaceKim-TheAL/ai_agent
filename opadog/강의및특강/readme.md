@@ -41,8 +41,8 @@ NO   | 강의순서  | 강의주제 | 강의노트 | 강의자료 | 유튜브링
 [강의자료0]: https://drive.google.com/file/d/1pGhWvom0dFT0covail26wq8hMHN7YD_s/view?usp=drive_link
 [강의자료1]: https://drive.google.com/file/d/1aEmEyMrfm3bZQ8qCh7BulECgenGJX0HZ/view?usp=drive_link
 [강의자료2]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
+[강의자료3]: https://drive.google.com/drive/folders/1zRa4-cVQMhNsP-6wqetP41rTQNyEECvL?hl=ko
 
-[강의자료3]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
 [강의자료4]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
 [강의자료5]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
 [강의자료6]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
