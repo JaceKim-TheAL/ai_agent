@@ -29,19 +29,21 @@ NO   | 강의순서  | 강의주제 | 강의노트 | 강의자료 | 유튜브링
 6 | 3주차특강 | 계정 관리 & 수익화 진입             | 📄[[강의노트]](S06_강의.md) | 💻[[강의자료]][강의자료6] | 🧏[[다시보기]][3주차특강] 
 7 | 4주차강의 | 수익화 실전 & AI 자동화             | 📄[[강의노트]](S07_강의.md) | 💻[[강의자료]][강의자료7] | 🧏‍♂️[[다시보기]][4주차강의] 
 
-[구글미트]: https://meet.google.com/qxo-sjvg-tci
+[구글미트]: https://meet.google.com/jdu-eqam-iam
+
 [오파독OT]: https://www.youtube.com/watch?v=Xovh7WHsu4s
 [1주차강의]: https://www.youtube.com/watch?v=c2HATlMxsvU
 [1주차특강]: https://www.youtube.com/watch?v=RjUa2WqnvZg
-[2주차강의]: https://www.youtube.com/watch?v=c2HATlMxsvU
-[2주차특강]: https://www.youtube.com/watch?v=RjUa2WqnvZg
-[3주차강의]: https://www.youtube.com/watch?v=c2HATlMxsvU
-[3주차특강]: https://www.youtube.com/watch?v=RjUa2WqnvZg
-[4주차강의]: https://www.youtube.com/watch?v=c2HATlMxsvU
-[강의자료0]: https://drive.google.com/file/d/1pGhWvom0dFT0covail26wq8hMHN7YD_s/view?usp=drive_link
-[강의자료1]: https://drive.google.com/file/d/1aEmEyMrfm3bZQ8qCh7BulECgenGJX0HZ/view?usp=drive_link
-[강의자료2]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
-[강의자료3]: https://drive.google.com/file/d/1FePL_YHEuqa-yq96gwF-UosWAsOnvsvk/view?usp=drive_link
+[2주차강의]: https://youtu.be/dOjaM9dC5bw
+[2주차특강]: https://youtu.be/
+[3주차강의]: https://youtu.be/
+[3주차특강]: https://youtu.be/
+[4주차강의]: https://youtu.be/
+
+[강의자료0]: ㅁ
+[강의자료1]: https://drive.google.com/file/d/1ZvSRLZRPtkaLdqtvjUGu3BDE8rZYrsgT/view?usp=drive_link
+[강의자료2]: ㅁ
+[강의자료3]: ㅁ
 
 [강의자료4]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
 [강의자료5]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
