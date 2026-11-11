@@ -63,3 +63,14 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [[TOP]](#index)
 
 ---
+### 강의사이트 모음
+
+[오파독님 강의 관련 사이트 모음]: https://opadok-class-links.tidychestnut.chatgpt.site/
+
+- 🐶 [오파독님 강의 관련 사이트 모음][오파독님 강의 관련 사이트 모음]
+
+<br/>
+
+[[TOP]](#index)
+
+---
