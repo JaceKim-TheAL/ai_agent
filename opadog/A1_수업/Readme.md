@@ -36,10 +36,10 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [강의자료1]: https://drive.google.com/file/d/1ZvSRLZRPtkaLdqtvjUGu3BDE8rZYrsgT/view?usp=drive_link
 [강의자료2]: https://drive.google.com/file/d/1r_K63nQudVvJc2fv_L-I4tLYMyHgk1n5/view?usp=drive_link
 [강의자료3]: https://drive.google.com/file/d/1F57m-LFPskZeVa6GWb0EFHyiI9f6_00h/view?usp=drive_link
-[강의자료4]: 
-[강의자료5]: 
-[강의자료6]: 
-[강의자료7]: 
+[강의자료4]: pdf
+[강의자료5]: pdf
+[강의자료6]: pdf
+[강의자료7]: pdf
 
 <!-- 강의 다시보기 -->
 [오파독OT]: https://www.youtube.com/watch?v=Xovh7WHsu4s
