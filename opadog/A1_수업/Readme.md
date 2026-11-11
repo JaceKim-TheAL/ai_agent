@@ -18,7 +18,7 @@
 
 ### INDEX
 
-NO   | 강의순서  | 강의주제 | 강의노트 | 강의자료 | 유튜브링크
+NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 :---:|:--------:|--------|:-------:|:-------:|:-------:
 0 | 오파독OT  | 사전안내 및 커리큘럼 소개           | -                          | 💻[[강의자료]][강의자료0] | 🧏[[다시보기]][오파독OT] 
 1 | 1주차강의 | 계정셋팅‧웜업‧레퍼런스 수집           | 📄[[강의노트]](S01_강의.md) | 💻[[강의자료]][강의자료1] | 🧏‍♂️[[다시보기]][1주차강의] 
@@ -31,6 +31,17 @@ NO   | 강의순서  | 강의주제 | 강의노트 | 강의자료 | 유튜브링
 
 [구글미트]: https://meet.google.com/jdu-eqam-iam
 
+<!-- PDF 강의자료 -->
+[강의자료0]: https://drive.google.com/file/d/1QUnjYTlYS8t8BMH8rq9jklAVLx0Y-KeI/view?usp=drive_link
+[강의자료1]: https://drive.google.com/file/d/1ZvSRLZRPtkaLdqtvjUGu3BDE8rZYrsgT/view?usp=drive_link
+[강의자료2]: https://drive.google.com/file/d/1r_K63nQudVvJc2fv_L-I4tLYMyHgk1n5/view?usp=drive_link
+[강의자료3]: https://drive.google.com/file/d/1F57m-LFPskZeVa6GWb0EFHyiI9f6_00h/view?usp=drive_link
+[강의자료4]: 
+[강의자료5]: 
+[강의자료6]: 
+[강의자료7]: 
+
+<!-- 강의 다시보기 -->
 [오파독OT]: https://www.youtube.com/watch?v=Xovh7WHsu4s
 [1주차강의]: https://www.youtube.com/watch?v=c2HATlMxsvU
 [1주차특강]: https://www.youtube.com/watch?v=RjUa2WqnvZg
@@ -40,15 +51,6 @@ NO   | 강의순서  | 강의주제 | 강의노트 | 강의자료 | 유튜브링
 [3주차특강]: https://youtu.be/
 [4주차강의]: https://youtu.be/
 
-[강의자료0]: ㅁ
-[강의자료1]: https://drive.google.com/file/d/1ZvSRLZRPtkaLdqtvjUGu3BDE8rZYrsgT/view?usp=drive_link
-[강의자료2]: ㅁ
-[강의자료3]: ㅁ
-
-[강의자료4]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
-[강의자료5]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
-[강의자료6]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
-[강의자료7]: https://drive.google.com/file/d/131ZRGfHWrlzEeJGLvMi7reClBu4VJomW/view?usp=drive_link
 
 ---
 ### 강의커리큘럼
