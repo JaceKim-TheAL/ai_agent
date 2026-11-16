@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9차시 · 업무 문서 자동화 실습 프롬프트</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=DM+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg: #f0ece4;
+  --white: #ffffff;
+  --hero-bg: #1e1e1a;
+  --hero-text: #f0ece4;
+  --accent-gold: #c8a84b;
+  --accent-green: #3d6b52;
+  --accent-blue: #4a6fa5;
+  --accent-rust: #a0522d;
+  --text-main: #1a1a16;
+  --text-sub: #6b6558;
+  --text-muted: #9c9284;
+  --border: #d8d2c8;
+  --tag-bg: #e8e2d8;
+  --tag-text: #5a5448;
+  --section-line: #3d6b52;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-main);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--hero-bg);
+  padding: 48px 64px 52px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+}
+.hero-left { flex: 1; }
+.hero-session {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: #888880;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.hero-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 900;
+  color: var(--hero-text);
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+.hero-title em {
+  color: var(--accent-gold);
+  font-style: normal;
+}
+.hero-right {
+  text-align: right;
+  color: #888880;
+  font-size: 13px;
+  line-height: 2;
+  padding-top: 8px;
+  flex-shrink: 0;
+}
+
+/* ── MAIN WRAP ── */
+.main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 48px 80px;
+}
+
+/* ── SECTION HEADER ── */
+.section-block { margin-bottom: 56px; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 28px;
+}
+.section-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background: var(--accent-green);
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.section-num.blue  { background: var(--accent-blue); }
+.section-num.rust  { background: var(--accent-rust); }
+.section-num.dark  { background: #3a3830; }
+.section-num.gold  { background: #8a6f2e; }
+
+.section-title-text {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.3px;
+}
+.section-eng {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* ── CATEGORY TABS ── */
+.cat-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.cat-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--text-sub);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.18s;
+  user-select: none;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.cat-tab:hover {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+  background: #f4f8f5;
+}
+.cat-tab.active {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #fff;
+  font-weight: 500;
+}
+.cat-tab .tab-icon { font-size: 14px; }
+
+/* ── CARD GRID ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 580px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .hero { padding: 36px 28px 40px; }
+  .main { padding: 36px 24px 60px; }
+}
+
+/* ── PROMPT CARD ── */
+.pcard {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.pcard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--border);
+  transition: background 0.2s;
+}
+.pcard:hover {
+  box-shadow: 0 6px 28px rgba(0,0,0,0.09);
+  transform: translateY(-2px);
+}
+.pcard:hover::before { background: var(--accent-green); }
+.pcard.blue:hover::before { background: var(--accent-blue); }
+.pcard.rust:hover::before { background: var(--accent-rust); }
+.pcard.gold:hover::before { background: #8a6f2e; }
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.card-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+.card-arrow {
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+.pcard:hover .card-arrow { transform: translateX(3px); }
+
+.card-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin-top: 10px;
+}
+.card-desc {
+  font-size: 12.5px;
+  color: var(--text-sub);
+  line-height: 1.7;
+  flex: 1;
+}
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 4px;
+}
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 2px 9px;
+  border-radius: 4px;
+  letter-spacing: 0.2px;
+}
+
+/* ── MODAL OVERLAY ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(20,18,14,0.55);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal-overlay.open { display: flex; }
+
+.modal {
+  background: var(--white);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 620px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.22);
+  animation: modalIn 0.2s ease;
+}
+@keyframes modalIn {
+  from { opacity:0; transform:translateY(16px) scale(0.98); }
+  to   { opacity:1; transform:none; }
+}
+
+.modal-head {
+  padding: 26px 28px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  border-radius: 14px 14px 0 0;
+  z-index: 1;
+}
+.modal-head-left { flex: 1; }
+.modal-head-icon { font-size: 26px; margin-bottom: 8px; }
+.modal-head-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+.modal-head-desc {
+  font-size: 13px;
+  color: var(--text-sub);
+  margin-top: 6px;
+  line-height: 1.6;
+}
+.modal-close {
+  background: var(--bg);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.modal-close:hover { background: var(--border); }
+
+.modal-body { padding: 24px 28px 28px; }
+
+.modal-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.prompt-box {
+  background: #f8f5f0;
+  border: 1px solid var(--border);
+  border-left: 3.5px solid var(--accent-green);
+  border-radius: 6px;
+  padding: 18px 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: #2e2b26;
+  white-space: pre-wrap;
+  word-break: keep-all;
+}
+.prompt-box.blue { border-left-color: var(--accent-blue); }
+.prompt-box.rust { border-left-color: var(--accent-rust); }
+.prompt-box.gold { border-left-color: #8a6f2e; }
+
+.modal-tip {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: #f4f8f5;
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: var(--text-sub);
+  line-height: 1.65;
+}
+.modal-tip strong { color: var(--accent-green); }
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--text-main);
+  color: var(--bg);
+  border: none;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+  letter-spacing: 0.2px;
+}
+.copy-btn:hover { background: #3d3b32; }
+.copy-btn.copied {
+  background: var(--accent-green);
+  color: white;
+}
+
+/* hidden sections */
+.section-block { display: none; }
+.section-block.active { display: block; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-session">SESSION 09 · AI 활용 실습</div>
+    <div class="hero-title">업무 문서 <em>자동화</em> / 실습 프롬프트</div>
+  </div>
+  <div class="hero-right">
+    원하는 유형을 선택하면<br>
+    바로 사용할 수 있는<br>
+    한글 프롬프트를 제공합니다
+  </div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<div class="main">
+
+  <!-- CATEGORY TABS -->
+  <div class="cat-tabs">
+    <div class="cat-tab active" data-section="sec-outline">
+      <span class="tab-icon">📊</span> 보고서 개요 생성
+    </div>
+    <div class="cat-tab" data-section="sec-email-outline">
+      <span class="tab-icon">📧</span> 이메일 개요 생성
+    </div>
+    <div class="cat-tab" data-section="sec-gian">
+      <span class="tab-icon">📝</span> 기안·품의서
+    </div>
+    <div class="cat-tab" data-section="sec-email-tmpl">
+      <span class="tab-icon">✉️</span> 이메일 템플릿
+    </div>
+    <div class="cat-tab" data-section="sec-notice">
+      <span class="tab-icon">📢</span> 공지·안내문
+    </div>
+    <div class="cat-tab" data-section="sec-tone">
+      <span class="tab-icon">🎭</span> 톤(Tone) 조정
+    </div>
+    <div class="cat-tab" data-section="sec-length">
+      <span class="tab-icon">📏</span> 길이(Length) 조정
+    </div>
+    <div class="cat-tab" data-section="sec-multi">
+      <span class="tab-icon">🎛️</span> 멀티 파라미터
+    </div>
+    <div class="cat-tab" data-section="sec-rewrite">
+      <span class="tab-icon">🔄</span> 문서 리라이팅
+    </div>
+    <div class="cat-tab" data-section="sec-ref">
+      <span class="tab-icon">📋</span> 파라미터 참조표
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       01 보고서 개요 생성
+  ══════════════════════════════════ -->
+  <div class="section-block active" id="sec-outline">
+    <div class="section-header">
+      <div class="section-left">
+        <span class="section-num">01</span>
+        <span class="section-title-text">보고서 개요 생성</span>
+      </div>
+      <span class="section-eng">REPORT / OUTLINE</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="pcard" onclick="openModal('m1')">
+        <div class="card-top">
+          <span class="card-icon">📊</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">업무 성과 보고서 개요</div>
+        <div class="card-desc">주제·독자·포함 항목을 지정해 보고서 목차와 각 섹션 설명을 자동으로 생성합니다.</div>
+        <div class="card-tags">
+          <span class="tag">목차 자동화</span>
+          <span class="tag">성과 분석</span>
+          <span class="tag">임원 보고</span>
+        </div>
+      </div>
+
+      <div class="pcard" onclick="openModal('m2')">
+        <div class="card-top">
+          <span class="card-icon">🗂️</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">회의록 → 보고서 개요 변환</div>
+        <div class="card-desc">회의 메모를 붙여넣으면 보고서 구조로 자동 정리해줍니다. 결정사항·액션 아이템 포함.</div>
+        <div class="card-tags">
+          <span class="tag">회의록 활용</span>
+          <span class="tag">구조 변환</span>
+        </div>
+      </div>
+
+      <div class="pcard" onclick="openModal('m3')">
+        <div class="card-top">
+          <span class="card-icon">📈</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">제안서 목차 및 개요 설계</div>
+        <div class="card-desc">경영진 설득용 제안서의 목차와 각 섹션별 핵심 내용을 설계합니다.</div>
+        <div class="card-tags">
+          <span class="tag">제안서</span>
+          <span class="tag">기획서</span>
+          <span class="tag">10~12페이지</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       02 이메일 개요 생성
+  ══════════════════════════════════ -->
+  <div class="section-block" id="sec-email-outline">
+    <div class="section-header">
+      <div class="section-left">
+        <span class="section-num blue">02</span>
+        <span class="section-title-text">이메일 개요 생성</span>
+      </div>
+      <span class="section-eng">EMAIL / OUTLINE</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="pcard blue" onclick="openModal('m4')">
+        <div class="card-top">
+          <span class="card-icon">📧</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">이메일 개요 구조화</div>
+        <div class="card-desc">상황·수신자·전달 내용을 입력하면 단락별 핵심 문장으로 이메일 뼈대를 만들어줍니다.</div>
+        <div class="card-tags">
+          <span class="tag">외부 협력사</span>
+          <span class="tag">일정 변경</span>
+          <span class="tag">단락 구조화</span>
+        </div>
+      </div>
+
+      <div class="pcard blue" onclick="openModal('m5')">
+        <div class="card-top">
+          <span class="card-icon">🤝</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">첫 미팅 제안 이메일 개요</div>
+        <div class="card-desc">잠재 고객에게 보내는 첫 연락 이메일의 설득 구조를 설계합니다. CTA 포함.</div>
+        <div class="card-tags">
+          <span class="tag">신규 고객</span>
+          <span class="tag">영업</span>
+          <span class="tag">CTA</span>
+        </div>
+      </div>
+
+      <div class="pcard blue" onclick="openModal('m6')">
+        <div class="card-top">
+          <span class="card-icon">🔔</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">내부 결재 촉구 이메일 개요</div>
+        <div class="card-desc">결재가 지연됐을 때 정중하게 긴박감을 전달하는 이메일 개요를 작성합니다.</div>
+        <div class="card-tags">
+          <span class="tag">내부 문서</span>
+          <span class="tag">결재 촉구</span>
+          <span class="tag">긴박감</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       03 기안·품의서
+  ══════════════════════════════════ -->
+  <div class="section-block" id="sec-gian">
+    <div class="section-header">
+      <div class="section-left">
+        <span class="section-num">03</span>
+        <span class="section-title-text">기안 · 품의서 템플릿</span>
+      </div>
+      <span class="section-eng">DRAFT / APPROVAL</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="pcard" onclick="openModal('m7')">
+        <div class="card-top">
+          <span class="card-icon">📝</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">예산 승인 품의서</div>
+        <div class="card-desc">교육·행사 등 예산 승인을 위한 재사용 가능한 품의서 템플릿. [빈칸] 형태로 제공.</div>
+        <div class="card-tags">
+          <span class="tag">예산 요청</span>
+          <span class="tag">재사용 템플릿</span>
+          <span class="tag">표 포함</span>
+        </div>
+      </div>
+
+      <div class="pcard" onclick="openModal('m8')">
+        <div class="card-top">
+          <span class="card-icon">✈️</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">출장 신청서</div>
+        <div class="card-desc">출장 기간·목적·비용 내역·결재란이 포함된 표 형식 출장 신청 기안서 템플릿.</div>
+        <div class="card-tags">
+          <span class="tag">출장</span>
+          <span class="tag">결재란</span>
+          <span class="tag">체크박스</span>
+        </div>
+      </div>
+
+      <div class="pcard" onclick="openModal('m9')">
+        <div class="card-top">
+          <span class="card-icon">🛒</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">물품 구매 요청서</div>
+        <div class="card-desc">A4 1페이지 내 품명·수량·단가·합계 표와 구매 사유가 포함된 물품 구매 기안서.</div>
+        <div class="card-tags">
+          <span class="tag">구매</span>
+          <span class="tag">A4 1페이지</span>
+          <span class="tag">공급업체</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       04 이메일 템플릿
+  ══════════════════════════════════ -->
+  <div class="section-block" id="sec-email-tmpl">
+    <div class="section-header">
+      <div class="section-left">
+        <span class="section-num blue">04</span>
+        <span class="section-title-text">이메일 템플릿</span>
+      </div>
+      <span class="section-eng">EMAIL TEMPLATE</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="pcard blue" onclick="openModal('m10')">
+        <div class="card-top">
+          <span class="card-icon">📬</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">상황별 이메일 3종 세트</div>
+        <div class="card-desc">미팅 조율·자료 독촉·업무 협조 3가지 상황에 맞는 완성형 이메일 템플릿 일괄 생성.</div>
+        <div class="card-tags">
+          <span class="tag">3종 세트</span>
+          <span class="tag">빈칸 처리</span>
+          <span class="tag">제목 포함</span>
+        </div>
+      </div>
+
+      <div class="pcard blue" onclick="openModal('m11')">
+        <div class="card-top">
+          <span class="card-icon">🙏</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">사과·유감 이메일</div>
+        <div class="card-desc">납품 지연 등 고객 불편 상황에서 진정성 있고 전문적인 사과 이메일 템플릿.</div>
+        <div class="card-tags">
+          <span class="tag">고객 대응</span>
+          <span class="tag">재발 방지</span>
+          <span class="tag">진정성</span>
+        </div>
+      </div>
+
+      <div class="pcard blue" onclick="openModal('m12')">
+        <div class="card-top">
+          <span class="card-icon">🎉</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">감사·축하 이메일</div>
+        <div class="card-desc">미팅 후 감사, 프로젝트 완료 감사 등 비즈니스 관계 유지에 필요한 이메일 2종.</div>
+        <div class="card-tags">
+          <span class="tag">관계 유지</span>
+          <span class="tag">미팅 후</span>
+          <span class="tag">협력사</span>
+        </div>
+      </div>
+
+      <div class="pcard blue" onclick="openModal('m13')">
+        <div class="card-top">
+          <span class="card-icon">📩</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">거절·수락 이메일</div>
+        <div class="card-desc">외부 제안에 대해 관계를 유지하며 정중하게 거절하거나 수락하는 이메일 템플릿 2종.</div>
+        <div class="card-tags">
+          <span class="tag">거절</span>
+          <span class="tag">수락</span>
+          <span class="tag">관계 유지</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       05 공지·안내문
+  ══════════════════════════════════ -->
+  <div class="section-block" id="sec-notice">
+    <div class="section-header">
+      <div class="section-left">
+        <span class="section-num rust">05</span>
+        <span class="section-title-text">공지 · 안내문 템플릿</span>
+      </div>
+      <span class="section-eng">NOTICE / ANNOUNCEMENT</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="pcard rust" onclick="openModal('m14')">
+        <div class="card-top">
+          <span class="card-icon">🖥️</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">시스템 점검 공지문</div>
+        <div class="card-desc">점검 일시·영향 시스템·대체 방법·문의처가 포함된 사내 공지문 템플릿.</div>
+        <div class="card-tags">
+          <span class="tag">IT 공지</span>
+          <span class="tag">전 직원</span>
+          <span class="tag">가독성</span>
+        </div>
+      </div>
+
+      <div class="pcard rust" onclick="openModal('m15')">
+        <div class="card-top">
+          <span class="card-icon">👔</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">인사 발령 공지</div>
+        <div class="card-desc">발령자 정보·변경 내용을 표 형식으로, 공식적이고 따뜻한 톤의 인사 공지 템플릿.</div>
+        <div class="card-tags">
+          <span class="tag">인사</span>
+          <span class="tag">표 형식</span>
+          <span class="tag">공식+따뜻한 톤</span>
+        </div>
+      </div>
+
+      <div class="pcard rust" onclick="openModal('m16')">
+        <div class="card-top">
+          <span class="card-icon">📰</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">사내 뉴스레터 초안</div>
+        <div class="card-desc">공지·성과·신규 입사자·일정 섹션을 갖춘 월간 사내 뉴스레터 초안. 매달 5분 완성.</div>
+        <div class="card-tags">
+          <span class="tag">월간</span>
+          <span class="tag">5개 섹션</span>
+          <span class="tag">친근한 톤</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       06 톤 조정
+  ══════════════════════════════════ -->
+  <div class="section-block" id="sec-tone">
+    <div class="section-header">
+      <div class="section-left">
+        <span class="section-num dark">06</span>
+        <span class="section-title-text">톤(Tone) 조정 실습</span>
+      </div>
+      <span class="section-eng">TONE PARAMETER</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="pcard" onclick="openModal('m17')">
+        <div class="card-top">
+          <span class="card-icon">🎭</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">동일 내용 · 3가지 톤 비교</div>
+        <div class="card-desc">같은 이메일을 격식체·친근체·간결체 3가지 톤으로 작성해 차이를 직접 비교합니다.</div>
+        <div class="card-tags">
+          <span class="tag">격식체</span>
+          <span class="tag">친근체</span>
+          <span class="tag">간결체</span>
+          <span class="tag">3버전 비교</span>
+        </div>
+      </div>
+
+      <div class="pcard" onclick="openModal('m18')">
+        <div class="card-top">
+          <span class="card-icon">🎯</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">설득적 vs 중립적 톤 비교</div>
+        <div class="card-desc">동일 제안을 데이터 중심 중립 톤과 감성 설득 톤으로 각각 작성해 효과를 비교합니다.</div>
+        <div class="card-tags">
+          <span class="tag">중립</span>
+          <span class="tag">설득</span>
+          <span class="tag">청중 맞춤</span>
+        </div>
+      </div>
+
+      <div class="pcard" onclick="openModal('m19')">
+        <div class="card-top">
+          <span class="card-icon">🌡️</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">내 이메일 톤 스펙트럼 조정</div>
+        <div class="card-desc">내가 쓴 이메일을 붙여넣으면 목표 톤으로 자연스럽게 리라이팅해줍니다.</div>
+        <div class="card-tags">
+          <span class="tag">내 글 입력</span>
+          <span class="tag">톤 업그레이드</span>
+          <span class="tag">금지 표현</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       07 길이 조정
+  ══════════════════════════════════ -->
+  <div class="section-block" id="sec-length">
+    <div class="section-header">
+      <div class="section-left">
+        <span class="section-num dark">07</span>
+        <span class="section-title-text">길이(Length) 조정 실습</span>
+      </div>
+      <span class="section-eng">LENGTH PARAMETER</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="pcard" onclick="openModal('m20')">
+        <div class="card-top">
+          <span class="card-icon">📏</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">보고서 3단계 길이 요약</div>
+        <div class="card-desc">같은 보고서 내용을 한 문장·세 줄·단락 요약 3가지 버전으로 동시에 생성합니다.</div>
+        <div class="card-tags">
+          <span class="tag">한 문장</span>
+          <span class="tag">3줄 요약</span>
+          <span class="tag">단락 요약</span>
+        </div>
+      </div>
+
+      <div class="pcard" onclick="openModal('m21')">
+        <div class="card-top">
+          <span class="card-icon">✂️</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">긴 이메일 압축 변환</div>
+        <div class="card-desc">원본 이메일을 절반 이하로 줄이면서 핵심 요청은 유지합니다. 삭제 내용도 설명.</div>
+        <div class="card-tags">
+          <span class="tag">압축</span>
+          <span class="tag">1분 이내</span>
+          <span class="tag">핵심 유지</span>
+        </div>
+      </div>
+
+      <div class="pcard" onclick="openModal('m22')">
+        <div class="card-top">
+          <span class="card-icon">🎤</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">발표 시간별 스크립트</div>
+        <div class="card-desc">3분·10분·30분 발표 버전을 각각 생성합니다. 슬라이드 구성 제안 포함.</div>
+        <div class="card-tags">
+          <span class="tag">3분</span>
+          <span class="tag">10분</span>
+          <span class="tag">30분</span>
+          <span class="tag">슬라이드</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       08 멀티 파라미터
+  ══════════════════════════════════ -->
+  <div class="section-block" id="sec-multi">
+    <div class="section-header">
+      <div class="section-left">
+        <span class="section-num gold">08</span>
+        <span class="section-title-text">멀티 파라미터 종합 실습</span>
+      </div>
+      <span class="section-eng">MULTI PARAMETER</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="pcard gold" onclick="openModal('m23')">
+        <div class="card-top">
+          <span class="card-icon">🎛️</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">멀티 파라미터 이메일 작성</div>
+        <div class="card-desc">수신자·목적·톤·길이·강조 포인트·금지어를 동시에 설정해 이메일 한 번에 완성.</div>
+        <div class="card-tags">
+          <span class="tag">7개 파라미터</span>
+          <span class="tag">금지어</span>
+          <span class="tag">CTA</span>
+        </div>
+      </div>
+
+      <div class="pcard gold" onclick="openModal('m24')">
+        <div class="card-top">
+          <span class="card-icon">🧩</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">역할 + 대상 + 목적 지정</div>
+        <div class="card-desc">역할(컨설턴트)·독자(스타트업 대표)·목적(설득)을 조합해 전문성 높은 요약문 생성.</div>
+        <div class="card-tags">
+          <span class="tag">역할 설정</span>
+          <span class="tag">결론 먼저</span>
+          <span class="tag">300자 이내</span>
+        </div>
+      </div>
+
+      <div class="pcard gold" onclick="openModal('m25')">
+        <div class="card-top">
+          <span class="card-icon">🔬</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">파라미터 A/B 테스트</div>
+        <div class="card-desc">B2B vs 개인 소비자 대상으로 파라미터를 달리해 이메일 제목 5개씩 생성·비교.</div>
+        <div class="card-tags">
+          <span class="tag">A/B 테스트</span>
+          <span class="tag">제목 생성</span>
+          <span class="tag">비교 분석</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       09 문서 리라이팅
+  ══════════════════════════════════ -->
+  <div class="section-block" id="sec-rewrite">
+    <div class="section-header">
+      <div class="section-left">
+        <span class="section-num rust">09</span>
+        <span class="section-title-text">문서 리라이팅</span>
+      </div>
+      <span class="section-eng">REWRITE / EDIT</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="pcard rust" onclick="openModal('m26')">
+        <div class="card-top">
+          <span class="card-icon">🔄</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">이메일 전면 리라이팅</div>
+        <div class="card-desc">내가 쓴 짧고 모호한 이메일을 구체적이고 설득력 있는 버전으로 전면 개선합니다.</div>
+        <div class="card-tags">
+          <span class="tag">내 글 개선</span>
+          <span class="tag">구조 추가</span>
+          <span class="tag">길이 확장</span>
+        </div>
+      </div>
+
+      <div class="pcard rust" onclick="openModal('m27')">
+        <div class="card-top">
+          <span class="card-icon">✏️</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">보고서 문장 교정 + 개선</div>
+        <div class="card-desc">맞춤법·긴 문장·모호한 표현·수동태를 수정하고 교정 전후를 나란히 보여줍니다.</div>
+        <div class="card-tags">
+          <span class="tag">맞춤법</span>
+          <span class="tag">능동태 변환</span>
+          <span class="tag">전후 비교</span>
+        </div>
+      </div>
+
+      <div class="pcard rust" onclick="openModal('m28')">
+        <div class="card-top">
+          <span class="card-icon">🌐</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">한↔영 비즈니스 번역</div>
+        <div class="card-desc">한국식 표현을 영문 비즈니스 관용구로 자연스럽게 번역합니다. 표현 해설 포함.</div>
+        <div class="card-tags">
+          <span class="tag">영문 번역</span>
+          <span class="tag">관용 표현</span>
+          <span class="tag">비즈니스 영어</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       10 파라미터 참조표
+  ══════════════════════════════════ -->
+  <div class="section-block" id="sec-ref">
+    <div class="section-header">
+      <div class="section-left">
+        <span class="section-num dark">REF</span>
+        <span class="section-title-text">파라미터 빠른 참조표</span>
+      </div>
+      <span class="section-eng">PARAMETER REFERENCE</span>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+      <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
+        <thead>
+          <tr style="background:#f0ece4;">
+            <th style="padding:12px 20px;text-align:left;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--text-muted);font-weight:400;border-bottom:1px solid var(--border);">파라미터</th>
+            <th style="padding:12px 20px;text-align:left;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--text-muted);font-weight:400;border-bottom:1px solid var(--border);">용도</th>
+            <th style="padding:12px 20px;text-align:left;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--text-muted);font-weight:400;border-bottom:1px solid var(--border);">값 예시</th>
+          </tr>
+        </thead>
+        <tbody id="ref-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- ══ MODAL ══ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnBg(event)">
+  <div class="modal" id="modal-box">
+    <div class="modal-head">
+      <div class="modal-head-left">
+        <div class="modal-head-icon" id="m-icon"></div>
+        <div class="modal-head-title" id="m-title"></div>
+        <div class="modal-head-desc" id="m-desc"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-label">PROMPT</div>
+      <div class="prompt-box" id="m-prompt"></div>
+      <div class="modal-tip" id="m-tip"></div>
+      <button class="copy-btn" id="copy-btn" onclick="copyPrompt()">
+        📋 &nbsp;프롬프트 복사
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── DATA ── */
+const PROMPTS = {
+  m1: {
+    icon:'📊', color:'',
+    title:'업무 성과 보고서 개요 자동 생성',
+    desc:'주제·독자·포함 항목을 지정하면 보고서 목차와 각 섹션 설명을 자동으로 생성합니다.',
+    prompt:`다음 주제로 업무 보고서 개요를 작성해줘.
+
+주제: 2025년 상반기 마케팅 성과 분석
+대상 독자: 임원진
+포함 항목: 핵심 지표 요약, 채널별 성과, 개선점, 향후 계획
+형식: 각 항목에 2~3줄 설명 포함`,
+    tip:'💡 주제·독자·포함 항목을 바꾸면 어떤 보고서든 개요를 즉시 뽑을 수 있어요.'
+  },
+  m2: {
+    icon:'🗂️', color:'',
+    title:'회의록 → 보고서 개요 변환',
+    desc:'회의 메모를 붙여넣으면 보고서 구조로 자동 정리해줍니다.',
+    prompt:`아래 회의 내용을 보고서 개요로 정리해줘.
+
+[회의 내용 붙여넣기]
+- 신제품 출시 일정: 3월 → 4월로 연기
+- 원인: 공급망 이슈, QA 기간 부족
+- 대응: 마케팅 캠페인 일정도 4주 조정
+- 담당자: 김팀장(일정 조율), 박대리(공급사 협의)
+
+결과물 형식: 제목 / 배경 / 주요 결정사항 / 액션 아이템 순서로`,
+    tip:'💡 실제 회의록을 붙여넣으면 바로 보고서용 개요로 구조화돼요.'
+  },
+  m3: {
+    icon:'📈', color:'',
+    title:'제안서 목차 및 개요 설계',
+    desc:'경영진 설득용 제안서의 목차와 섹션별 핵심 내용을 설계합니다.',
+    prompt:`아래 조건에 맞는 제안서 목차와 각 섹션 개요를 만들어줘.
+
+제안 목적: 신규 사내 업무 자동화 시스템 도입 제안
+제안 대상: 경영진 및 IT 부서장
+전달할 핵심 메시지:
+  - 현재 수동 업무의 비효율성
+  - 자동화 도입 시 절감 효과 (시간, 비용)
+  - 단계별 도입 로드맵
+분량: 10~12 페이지 기준
+형식: 각 목차 항목에 소제목 + 포함할 내용 요약 2줄`,
+    tip:'💡 제안서·기획서·현황 분석 등 다양한 문서 유형에 바로 활용 가능해요.'
+  },
+  m4: {
+    icon:'📧', color:'blue',
+    title:'이메일 개요 구조화 생성',
+    desc:'상황·수신자·전달 내용을 입력하면 단락별 핵심 문장으로 이메일 뼈대를 만들어줍니다.',
+    prompt:`아래 상황에 맞는 이메일 개요를 작성해줘.
+
+상황: 거래처에 프로젝트 일정 변경 양해 요청
+수신자: 외부 협력사 담당자
+전달 내용: ① 변경 사유 ② 새 일정 ③ 불편에 대한 사과 ④ 향후 협력 의지
+개요 형태: 단락별 핵심 문장 1개씩`,
+    tip:'💡 개요를 먼저 만들고 "이 개요로 실제 이메일 작성해줘"로 이어가면 효율적이에요.'
+  },
+  m5: {
+    icon:'🤝', color:'blue',
+    title:'첫 미팅 제안 이메일 개요',
+    desc:'잠재 고객에게 보내는 첫 연락 이메일의 설득 구조를 설계합니다.',
+    prompt:`새로운 잠재 고객에게 보낼 첫 미팅 제안 이메일 개요를 만들어줘.
+
+상대방 정보: 중견 제조업체 구매팀장
+우리 회사: B2B SaaS 솔루션 제공
+핵심 어필 포인트: 유사 업종 도입 사례, 6개월 ROI 측정 가능
+개요 구조: 관심 유도 → 공감 → 솔루션 힌트 → 미팅 제안 → CTA`,
+    tip:'💡 개요의 각 단락을 뼈대로 실제 이메일을 작성하면 설득 구조가 탄탄해져요.'
+  },
+  m6: {
+    icon:'🔔', color:'blue',
+    title:'내부 결재 촉구 이메일 개요',
+    desc:'결재가 지연됐을 때 정중하게 긴박감을 전달하는 이메일 개요를 작성합니다.',
+    prompt:`내부 결재를 빠르게 받기 위한 이메일 개요를 짜줘.
+
+상황: 마케팅 예산 승인이 2주 지연되어 재촉 필요
+수신자: 직속 상사 (팀장)
+요청 내용: 이번 주 내 결재 완료 요청
+포함할 근거: 캠페인 런칭 일정 임박, 업체 계약 데드라인
+톤: 정중하되 긴박감 전달`,
+    tip:'💡 긴박감 전달 방법을 개요 단계에서 설계하면 실제 이메일 작성이 훨씬 쉬워요.'
+  },
+  m7: {
+    icon:'📝', color:'',
+    title:'예산 승인 품의서 템플릿',
+    desc:'교육·행사 예산 승인용 재사용 가능한 품의서. [빈칸] 형태로 제공합니다.',
+    prompt:`다음 조건에 맞는 품의서 템플릿을 만들어줘.
+
+용도: 외부 교육 예산 승인 요청
+포함 항목:
+  - 기안 제목 / 기안일 / 기안자
+  - 요청 배경 및 목적
+  - 교육 내용 및 일정
+  - 예산 내역 (표 형식)
+  - 기대 효과
+  - 첨부 자료 목록
+재사용 가능하도록 변경할 부분은 [빈칸] 형태로 작성해줘.`,
+    tip:'💡 "재사용 가능하도록 빈칸 형태로" 지시가 핵심! 다음 기안도 이 템플릿으로 바로 활용돼요.'
+  },
+  m8: {
+    icon:'✈️', color:'',
+    title:'출장 신청서 템플릿',
+    desc:'출장 기간·목적·비용 내역·결재란이 포함된 표 형식 출장 신청 기안서 템플릿.',
+    prompt:`출장 신청 품의서 템플릿을 만들어줘.
+
+포함 항목:
+  - 출장자 정보 (이름/부서/직급)
+  - 출장 기간 및 목적지
+  - 출장 목적 및 주요 일정
+  - 예상 비용 내역 (교통/숙박/식비/기타)
+  - 출장 기대 성과
+  - 결재란 (담당 → 팀장 → 본부장)
+표와 체크박스를 적절히 활용해서 보기 좋게 만들어줘.`,
+    tip:'💡 표+체크박스 지시를 추가하면 실무에서 바로 쓸 수 있는 형식이 만들어져요.'
+  },
+  m9: {
+    icon:'🛒', color:'',
+    title:'물품 구매 요청서 템플릿',
+    desc:'A4 1페이지 내 품명·수량·단가·합계 표와 구매 사유가 포함된 물품 구매 기안서.',
+    prompt:`사무용품 또는 장비 구매 요청 기안서 템플릿을 만들어줘.
+
+포함 항목:
+  - 요청 부서 / 요청일
+  - 구매 항목 (품명, 수량, 단가, 합계) — 표 형식
+  - 구매 필요 사유
+  - 예산 코드 및 집행 예정일
+  - 공급업체 정보 (선정 이유 포함)
+  - 담당자 서명란
+형식: A4 1페이지 내외, 깔끔한 구조`,
+    tip:'💡 "A4 1페이지 내외"처럼 물리적 분량도 지정할 수 있어요.'
+  },
+  m10: {
+    icon:'📬', color:'blue',
+    title:'상황별 이메일 3종 세트',
+    desc:'미팅 조율·자료 독촉·업무 협조 3가지 이메일 템플릿을 한 번에 생성합니다.',
+    prompt:`우리 팀에서 자주 쓰는 이메일 템플릿 3가지를 만들어줘.
+
+① 미팅 일정 조율 요청 (외부 고객 대상)
+② 자료 제출 독촉 (내부 팀원 대상, 부드럽게)
+③ 업무 협조 요청 (타부서 대상)
+
+각 템플릿에 다음을 포함해줘:
+- 제목 예시
+- 본문 (인사 → 본론 → 마무리 구조)
+- [변경 필요한 부분]은 괄호로 표시`,
+    tip:'💡 한 번에 여러 상황의 템플릿을 뽑아두면 팀 전체 실무 효율이 크게 올라가요.'
+  },
+  m11: {
+    icon:'🙏', color:'blue',
+    title:'사과·유감 이메일 템플릿',
+    desc:'고객 불편 상황에서 진정성 있고 전문적인 사과 이메일 템플릿.',
+    prompt:`고객에게 보내는 사과 이메일 템플릿을 만들어줘.
+
+상황: 납품 지연으로 인한 고객 불편 사과
+포함 요소:
+  - 진심 어린 사과 표명
+  - 지연 원인 설명 (변명 없이 간결하게)
+  - 현재 해결 진행 상황
+  - 완료 예정일 명시
+  - 재발 방지 대책
+  - 보상/혜택 안내 (선택)
+톤: 진정성 있고 전문적, 자기비하 없이`,
+    tip:'💡 "자기비하 없이"처럼 금지할 표현 방식도 지정할 수 있어요.'
+  },
+  m12: {
+    icon:'🎉', color:'blue',
+    title:'감사·축하 이메일 템플릿',
+    desc:'미팅 후 감사, 프로젝트 완료 감사 등 비즈니스 관계 유지용 이메일 2종.',
+    prompt:`비즈니스 감사 및 축하 이메일 템플릿 2종을 만들어줘.
+
+① 미팅 후 감사 이메일 (잠재 고객에게)
+  - 미팅에 대한 감사
+  - 논의된 주요 내용 요약 1~2줄
+  - 다음 단계 안내
+  - 추가 문의 환영
+
+② 프로젝트 완료 감사 이메일 (협력사에게)
+  - 협력에 대한 감사
+  - 성과 언급 (짧게)
+  - 향후 협력 기대
+각 템플릿 길이: 5~7문장 이내`,
+    tip:'💡 관계 유지에 중요한 감사 이메일도 템플릿화해두면 빠짐없이 발송할 수 있어요.'
+  },
+  m13: {
+    icon:'📩', color:'blue',
+    title:'거절·수락 이메일 템플릿',
+    desc:'외부 제안에 관계를 유지하며 정중히 거절하거나 수락하는 이메일 2종.',
+    prompt:`외부 제안에 대한 정중한 거절과 수락 이메일 템플릿을 각각 만들어줘.
+
+거절 버전:
+  - 감사 인사 → 거절 의사 명확히 → 이유 (간단히) → 관계 유지 의지
+
+수락 버전:
+  - 감사 및 긍정 반응 → 수락 의사 → 다음 스텝 제안 → 기대감 표현
+
+공통 조건:
+  - 상대방 기분을 상하지 않게
+  - 추후 협력 여지 열어두기
+  - [변경 부분] 괄호 표시`,
+    tip:'💡 거절 이메일도 관계를 유지하는 방식으로 쓰는 게 비즈니스의 핵심이에요.'
+  },
+  m14: {
+    icon:'🖥️', color:'rust',
+    title:'시스템 점검 공지문 템플릿',
+    desc:'점검 일시·영향 시스템·대체 방법·문의처가 포함된 사내 공지문 템플릿.',
+    prompt:`사내 시스템 점검 공지문 템플릿을 만들어줘.
+
+포함 요소:
+  - 수신: 전 직원
+  - 점검 일시 (날짜/시간)
+  - 영향 받는 시스템 목록
+  - 대체 방법 안내
+  - 점검 완료 후 안내 방법
+  - 문의처 (담당자명/연락처)
+형식: 한눈에 파악 가능한 구조, 강조 표시 활용`,
+    tip:'💡 "한눈에 파악 가능한 구조"처럼 가독성 지시도 함께 주세요.'
+  },
+  m15: {
+    icon:'👔', color:'rust',
+    title:'인사 발령 공지 템플릿',
+    desc:'발령자 정보·변경 내용을 표 형식으로, 공식적이고 따뜻한 톤의 인사 공지.',
+    prompt:`인사 발령 공지 템플릿을 만들어줘.
+
+포함 요소:
+  - 발령 일자
+  - 발령 내용 (발령자 이름, 변경 전/후 직책·부서)
+  - 짧은 인사말 또는 경위 설명 (선택)
+  - 앞으로의 협조 요청
+  - 발령자 인사 한마디 (선택)
+톤: 공식적이면서도 따뜻한 느낌
+형식: 발령 내용은 표 형식으로`,
+    tip:'💡 인사 공지는 공식성과 온기를 동시에 담아야 해요. 톤 지시가 중요합니다.'
+  },
+  m16: {
+    icon:'📰', color:'rust',
+    title:'사내 뉴스레터 초안',
+    desc:'공지·성과·신규 입사자·일정 섹션을 갖춘 월간 사내 뉴스레터 초안.',
+    prompt:`이번 달 사내 뉴스레터 초안을 작성해줘.
+
+포함 섹션:
+  1. 이달의 한마디 (짧은 동기부여 메시지)
+  2. 주요 공지사항 3가지 (불릿 포인트)
+  3. 팀 성과 하이라이트 (부서명, 성과 내용)
+  4. 이달의 신규 입사자 소개 (이름, 부서, 한 줄 소개)
+  5. 다음 달 주요 일정
+톤: 밝고 친근하게, 지루하지 않게
+분량: 섹션당 3~5줄 이내`,
+    tip:'💡 실제 데이터를 [괄호]로 넣어 초안을 만들고, 내용만 교체하면 매달 5분 만에 완성!'
+  },
+  m17: {
+    icon:'🎭', color:'',
+    title:'동일 내용 · 3가지 톤 비교',
+    desc:'같은 이메일을 격식체·친근체·간결체 3버전으로 작성해 차이를 직접 비교합니다.',
+    prompt:`같은 내용을 다른 톤으로 3가지 버전으로 작성해줘.
+
+내용: 프로젝트 마감일을 1주일 연장 요청하는 이메일
+
+버전 1 — 톤: 격식체 / 정중함 (임원에게)
+버전 2 — 톤: 친근하고 솔직함 (동료에게)
+버전 3 — 톤: 간결하고 직접적 (내부 보고용)
+
+각 버전마다 적합한 상황도 한 줄로 설명해줘.`,
+    tip:'💡 같은 요청이 톤에 따라 얼마나 달라지는지 직접 비교하는 핵심 실습이에요.'
+  },
+  m18: {
+    icon:'🎯', color:'',
+    title:'설득적 vs 중립적 톤 비교',
+    desc:'동일 제안을 데이터 중심 중립 톤과 감성 설득 톤으로 각각 작성해 비교합니다.',
+    prompt:`아래 내용을 2가지 톤으로 각각 써줘.
+
+내용: 재택근무 확대를 경영진에게 제안하는 이메일
+
+버전 A — 톤: 중립적·객관적 (데이터 중심, 감정 배제)
+버전 B — 톤: 설득적·공감적 (직원 니즈 강조, 경영진 이익 연결)
+
+두 버전을 비교하면서 어떤 상황에서 어떤 톤이 더 효과적인지도 설명해줘.`,
+    tip:'💡 청중의 의사결정 방식에 따라 톤을 달리하면 설득 성공률이 달라져요.'
+  },
+  m19: {
+    icon:'🌡️', color:'',
+    title:'내 이메일 톤 스펙트럼 조정',
+    desc:'내가 쓴 이메일을 붙여넣으면 목표 톤으로 자연스럽게 리라이팅해줍니다.',
+    prompt:`내가 쓴 이메일의 톤을 조정해줘.
+
+[내 이메일 원본]
+"안녕하세요. 지난번 말씀드린 건 검토해보셨나요? 언제 답변 주실 수 있을까요? 감사합니다."
+
+조정 방향:
+- 현재 톤: 다소 직접적이고 짧음
+- 목표 톤: 전문적이고 따뜻하면서도 명확한 요청이 담긴 톤
+- 길이: 현재보다 조금 더 길게 (맥락 추가)
+- 금지: 너무 낮추거나 자기비하하는 표현`,
+    tip:'💡 내 글을 직접 붙여넣고 개선 방향을 주면 내 스타일이 유지된 채로 개선돼요.'
+  },
+  m20: {
+    icon:'📏', color:'',
+    title:'보고서 3단계 길이 요약',
+    desc:'같은 보고서 내용을 한 문장·세 줄·단락 요약 3가지 버전으로 동시에 생성합니다.',
+    prompt:`아래 보고서 내용을 3가지 길이로 요약해줘.
+
+[보고서 내용 붙여넣기]
+예시: "올해 고객 만족도 조사 결과, 전반적 만족도는 작년 대비 8% 상승했으며
+응답자 중 72%가 서비스 속도에 만족한다고 답했습니다. 주요 개선 요청 사항은
+모바일 앱 UI 개선(38%), 고객센터 응답 속도(27%) 순이었습니다."
+
+길이 A: 한 문장 요약 (30자 이내)
+길이 B: 세 줄 요약 (핵심 포인트 3개)
+길이 C: 단락 요약 (150자 내외, 맥락 포함)`,
+    tip:'💡 발표 슬라이드·이메일 본문·SNS 게시용 등 용도에 따라 선택해서 쓰세요.'
+  },
+  m21: {
+    icon:'✂️', color:'',
+    title:'긴 이메일 압축 변환',
+    desc:'원본 이메일을 절반 이하로 줄이면서 핵심 요청은 유지합니다.',
+    prompt:`아래 이메일을 핵심만 남기고 절반 이하로 줄여줘.
+
+조건:
+  - 핵심 요청 사항은 반드시 유지
+  - 중복 표현, 과도한 인사말 제거
+  - 읽는 데 1분 이내
+
+[원본 이메일 붙여넣기]
+
+추가로, 어떤 내용을 삭제했는지 간단히 설명해줘.`,
+    tip:'💡 지나치게 긴 이메일은 읽히지 않아요. 압축 연습으로 핵심 전달력을 키워봐요.'
+  },
+  m22: {
+    icon:'🎤', color:'',
+    title:'발표 시간별 스크립트 조정',
+    desc:'3분·10분·30분 발표 버전을 각각 생성하고 슬라이드 구성도 제안합니다.',
+    prompt:`아래 내용을 발표 시간에 맞게 3가지 버전으로 조정해줘.
+
+내용: 신규 고객 온보딩 프로세스 개선 제안
+
+버전 1: 3분 발표용 (핵심 포인트 3가지만)
+버전 2: 10분 발표용 (배경 + 현황 + 제안 + 기대효과)
+버전 3: 30분 발표용 (풀 스토리, 데이터 포함, 질의응답 준비)
+
+각 버전에 발표 포인트와 강조할 슬라이드 구성도 제안해줘.`,
+    tip:'💡 발표 시간이 바뀌어도 이 프롬프트 하나로 빠르게 재구성할 수 있어요.'
+  },
+  m23: {
+    icon:'🎛️', color:'gold',
+    title:'멀티 파라미터 이메일 작성',
+    desc:'수신자·목적·톤·길이·강조·금지어를 동시에 설정해 이메일 한 번에 완성.',
+    prompt:`아래 파라미터를 적용해서 업무 이메일을 작성해줘.
+
+[파라미터 설정]
+- 수신자: 신규 외부 고객사 (처음 연락)
+- 목적: 첫 미팅 제안
+- 톤: 전문적이고 따뜻함
+- 길이: 중간 (200~250자)
+- 강조 포인트: 우리 회사 관련 경험, 고객사 니즈 이해
+- 금지어: "방문", "영업", "비용"
+- 마무리: 다음 단계 행동 유도 포함`,
+    tip:'💡 파라미터를 하나씩 바꾸면서 결과가 어떻게 달라지는지 비교해보세요.'
+  },
+  m24: {
+    icon:'🧩', color:'gold',
+    title:'역할 + 대상 + 목적 지정',
+    desc:'역할·독자·목적을 조합해 전문성 높은 설득 요약문을 생성합니다.',
+    prompt:`아래 설정으로 보고서 요약문을 작성해줘.
+
+역할: 너는 10년 경력의 경영 컨설턴트야
+대상 독자: 스타트업 대표 (비전공자, 바쁜 사람)
+목적: 직원 복지 프로그램 도입 필요성 설득
+톤: 자신감 있고 데이터 기반
+길이: 300자 이내
+형식: 첫 문장에 핵심 결론, 이후 근거 3가지
+
+핵심 데이터: 복지 프로그램 도입 후 이직률 30% 감소, 생산성 15% 향상`,
+    tip:'💡 "너는 ~이야" 역할 설정이 결과물의 전문성과 관점을 크게 바꿔줍니다.'
+  },
+  m25: {
+    icon:'🔬', color:'gold',
+    title:'파라미터 A/B 테스트',
+    desc:'B2B vs 개인 소비자 대상으로 파라미터를 달리해 이메일 제목 5개씩 비교.',
+    prompt:`같은 주제로 파라미터만 다르게 설정한 이메일 제목 2가지를 만들어줘.
+
+주제: 신규 서비스 출시 안내
+
+버전 A 파라미터:
+  - 대상: B2B 기업 구매 담당자
+  - 톤: 비즈니스 가치 강조
+  - 스타일: 수치·결과 중심
+
+버전 B 파라미터:
+  - 대상: 개인 소비자
+  - 톤: 감성적, 호기심 유발
+  - 스타일: 스토리텔링 힌트
+
+각 제목 5개씩 만들고 왜 그렇게 썼는지 이유도 설명해줘.`,
+    tip:'💡 제목 A/B 테스트는 뉴스레터, 공지 등 어떤 문서에도 적용할 수 있어요.'
+  },
+  m26: {
+    icon:'🔄', color:'rust',
+    title:'이메일 전면 리라이팅',
+    desc:'내가 쓴 짧고 모호한 이메일을 구체적이고 설득력 있는 버전으로 전면 개선합니다.',
+    prompt:`아래 이메일을 조건에 맞게 다시 써줘.
+
+[원본 이메일]
+"안녕하세요. 이번 건에 대해 검토 후 회신 부탁드립니다. 감사합니다."
+
+변경 조건:
+- 톤: 더 구체적이고 설득력 있게
+- 길이: 현재의 2배 (전후 맥락 추가)
+- 구조: 요청 배경 → 구체적 요청 → 기한 → 감사 인사
+- 대상: 처음 연락하는 외부 파트너`,
+    tip:'💡 내 글을 붙여넣고 개선 조건만 주면 즉시 업그레이드돼요.'
+  },
+  m27: {
+    icon:'✏️', color:'rust',
+    title:'보고서 문장 교정 + 개선',
+    desc:'맞춤법·긴 문장·모호한 표현·수동태를 수정하고 교정 전후를 나란히 보여줍니다.',
+    prompt:`아래 보고서 문단을 교정하고 개선해줘.
+
+[원본 문단 붙여넣기]
+
+교정 사항:
+  ① 맞춤법·문법 오류 수정
+  ② 불필요하게 긴 문장 분리
+  ③ 모호한 표현 → 구체적 표현으로
+  ④ 수동태 → 능동태로 가능한 한 변환
+
+교정 전/후를 나란히 보여주고, 무엇을 어떻게 바꿨는지 설명해줘.`,
+    tip:'💡 교정 전후 비교를 요청하면 어떤 부분이 개선됐는지 학습하기도 좋아요.'
+  },
+  m28: {
+    icon:'🌐', color:'rust',
+    title:'한↔영 비즈니스 번역',
+    desc:'한국식 표현을 영문 비즈니스 관용구로 자연스럽게 번역합니다. 표현 해설 포함.',
+    prompt:`아래 이메일을 영문 비즈니스 이메일로 번역해줘.
+
+[원문 붙여넣기]
+
+번역 조건:
+  - 어투: 격식 있는 비즈니스 영어
+  - 수신자: 미국 기업 담당자
+  - 직역 금지: 한국식 표현은 영문 관용구로 자연스럽게
+  - 추가: 원문에 없더라도 자연스러운 비즈니스 영어 관용 표현 1~2개 삽입 가능
+
+번역 후 주의해서 바꾼 표현이 있으면 설명해줘.`,
+    tip:'💡 "한국식 표현은 영문 관용구로" 지시가 자연스러운 번역의 핵심이에요.'
+  }
+};
+
+const PARAMS = [
+  ['톤 (Tone)', '문서의 어조·분위기', '격식체, 친근함, 직접적, 설득적, 중립적, 공감적'],
+  ['길이 (Length)', '출력 분량 제어', '한 문장, 3줄, 200자 이내, A4 1장, 현재의 절반'],
+  ['대상 (Audience)', '수신자 맞춤화', '임원, 고객사, 신입직원, 동료, 외부 파트너, 비전공자'],
+  ['형식 (Format)', '출력 구조 지정', '표, 글머리기호, 단락, 번호 목록, 전/후 비교'],
+  ['강조 (Focus)', '핵심 메시지', '비용 절감, ROI, 속도, 신뢰성, 결론 우선, 스토리텔링'],
+  ['금지어 (Exclude)', '특정 단어 제외', '"영업", "비용", 영어 단어, 전문 용어, 자기비하 표현'],
+  ['역할 (Role)', 'Claude 관점 설정', '마케터, HR 담당자, 법무팀, 경영 컨설턴트'],
+  ['구조 (Structure)', '논리 흐름 지정', '결론 먼저, 문제→원인→해결, 배경→본론→요청'],
+  ['제약 (Constraint)', '기타 조건', '이모지 금지, 항목 3개만, 빈칸 처리, 전후 비교 포함'],
+];
+
+/* ── 참조표 렌더 ── */
+const tbody = document.getElementById('ref-tbody');
+PARAMS.forEach(([name, use, ex], i) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td style="padding:12px 20px;border-bottom:1px solid #e8e2d8;font-family:'DM Mono',monospace;font-size:12px;color:#4a6fa5;white-space:nowrap;">${name}</td>
+    <td style="padding:12px 20px;border-bottom:1px solid #e8e2d8;color:#6b6558;font-size:13px;">${use}</td>
+    <td style="padding:12px 20px;border-bottom:1px solid #e8e2d8;color:#9c9284;font-size:12px;">${ex}</td>
+  `;
+  if (i === PARAMS.length-1) {
+    tr.querySelectorAll('td').forEach(td => td.style.borderBottom = 'none');
+  }
+  tbody.appendChild(tr);
+});
+
+/* ── 탭 전환 ── */
+const tabs = document.querySelectorAll('.cat-tab');
+const sections = document.querySelectorAll('.section-block');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    sections.forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    const target = document.getElementById(tab.dataset.section);
+    if (target) target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+/* ── 모달 ── */
+function openModal(id) {
+  const d = PROMPTS[id];
+  if (!d) return;
+  document.getElementById('m-icon').textContent = d.icon;
+  document.getElementById('m-title').textContent = d.title;
+  document.getElementById('m-desc').textContent = d.desc;
+  const pb = document.getElementById('m-prompt');
+  pb.textContent = d.prompt;
+  pb.className = 'prompt-box' + (d.color ? ' ' + d.color : '');
+  document.getElementById('m-tip').textContent = d.tip;
+  const btn = document.getElementById('copy-btn');
+  btn.className = 'copy-btn';
+  btn.innerHTML = '📋 &nbsp;프롬프트 복사';
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnBg(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ── 복사 ── */
+function copyPrompt() {
+  const text = document.getElementById('m-prompt').innerText.trim();
+  const btn = document.getElementById('copy-btn');
+
+  const doSuccess = () => {
+    btn.classList.add('copied');
+    btn.innerHTML = '✅ &nbsp;복사 완료!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '📋 &nbsp;프롬프트 복사';
+    }, 2200);
+  };
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(doSuccess).catch(() => fallbackCopy(text, doSuccess));
+  } else {
+    fallbackCopy(text, doSuccess);
+  }
+}
+
+function fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); cb(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>

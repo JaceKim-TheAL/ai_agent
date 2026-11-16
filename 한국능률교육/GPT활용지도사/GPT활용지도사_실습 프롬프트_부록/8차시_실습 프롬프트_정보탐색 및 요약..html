@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8차시 · 정보 탐색 / 요약 / 번역</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #f5f2eb;
+    --bg2:       #ede9df;
+    --surface:   #ffffff;
+    --border:    #ddd8cc;
+    --border2:   #c8c2b4;
+    --ink:       #1a1814;
+    --ink2:      #4a4640;
+    --ink3:      #8a8480;
+    --ink4:      #b8b4ae;
+
+    --s1: #2d5a3d;   /* 요약 — 딥그린 */
+    --s1b: #e8f2ec;
+    --s2: #1e3f6e;   /* 재작성·번역 — 네이비 */
+    --s2b: #e4ecf5;
+    --s3: #6b3a2a;   /* 감수 — 브라운레드 */
+    --s3b: #f5ede9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── 헤더 ── */
+  header {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 48px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--s1) 33.3%, var(--s2) 33.3% 66.6%, var(--s3) 66.6%);
+  }
+
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .session-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--ink4);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: #c8b87a;
+  }
+
+  .header-desc {
+    font-size: 13px;
+    color: var(--ink3);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 300px;
+    text-align: right;
+  }
+
+  /* ── 레이아웃 ── */
+  .layout {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+  }
+
+  /* ── 섹션 ── */
+  .section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border);
+    position: relative;
+  }
+
+  .section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 48px;
+    height: 2px;
+    background: var(--section-color);
+  }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--surface);
+    background: var(--section-color);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .section-sub {
+    font-size: 12px;
+    color: var(--ink3);
+    font-weight: 300;
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── 카드 그리드 ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 22px 22px 18px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    position: relative;
+  }
+
+  .card:hover {
+    border-color: var(--section-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+
+  .card.active {
+    border-color: var(--section-color);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--section-color) 12%, transparent);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .card-icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .card-arrow {
+    font-size: 14px;
+    color: var(--ink4);
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .card:hover .card-arrow,
+  .card.active .card-arrow {
+    color: var(--section-color);
+    transform: translateX(2px);
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 12.5px;
+    color: var(--ink3);
+    line-height: 1.65;
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    background: var(--section-bg);
+    color: var(--section-color);
+    border: 1px solid color-mix(in srgb, var(--section-color) 20%, transparent);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── 프롬프트 패널 ── */
+  .prompt-panel {
+    display: none;
+    background: var(--surface);
+    border: 1.5px solid var(--border2);
+    border-radius: 8px;
+    margin-top: 12px;
+    overflow: hidden;
+    animation: panelIn 0.3s ease;
+  }
+
+  .prompt-panel.open { display: block; }
+
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    background: var(--section-bg2, #fafafa);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .panel-head-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .panel-head-icon { font-size: 20px; }
+
+  .panel-head-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .panel-head-sub {
+    font-size: 11.5px;
+    color: var(--ink3);
+    font-weight: 300;
+    margin-top: 1px;
+  }
+
+  .panel-close {
+    background: none;
+    border: 1px solid var(--border);
+    width: 30px; height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--ink3);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .panel-close:hover { border-color: var(--ink3); color: var(--ink); }
+
+  /* variant tabs */
+  .vtabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .vtab {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink3);
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: -1px;
+    letter-spacing: 0.02em;
+  }
+
+  .vtab:hover { color: var(--ink2); }
+  .vtab.on { color: var(--section-color); border-bottom-color: var(--section-color); }
+
+  .vcontent { display: none; padding: 24px; }
+  .vcontent.on { display: block; }
+
+  /* prompt box */
+  .pbox {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: var(--ink2);
+    white-space: pre-wrap;
+    word-break: break-all;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .pbox .r { color: var(--section-color); font-weight: 500; } /* 역할 */
+  .pbox .b { color: #1e60b0; }  /* [bracket] */
+  .pbox .h { color: #7a3a88; }  /* 구조 헤더 */
+
+  .pbox-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .pnote {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink4);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pnote::before { content: '※'; color: var(--section-color); }
+
+  .copybtn {
+    background: var(--surface);
+    border: 1.5px solid var(--section-color);
+    color: var(--section-color);
+    padding: 7px 18px;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .copybtn:hover { background: var(--section-color); color: #fff; }
+  .copybtn.done { background: #3a8a5a; border-color: #3a8a5a; color: #fff; }
+
+  /* tip */
+  .tip {
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: color-mix(in srgb, var(--section-color) 5%, var(--bg));
+    border-left: 3px solid var(--section-color);
+    border-radius: 2px;
+  }
+  .tip-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--section-color);
+    margin-bottom: 6px;
+  }
+  .tip-body {
+    font-size: 12.5px;
+    color: var(--ink2);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── 푸터 ── */
+  footer {
+    background: var(--ink);
+    padding: 24px 32px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--ink3);
+  }
+
+  @media (max-width: 640px) {
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .header-desc { text-align: left; }
+    .layout { padding: 28px 16px 60px; }
+    .cards { grid-template-columns: 1fr; }
+    .section-sub { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="session-badge">Session 08 · AI 활용 실습</div>
+      <h1>정보 탐색 / <em>요약</em> / 번역</h1>
+    </div>
+    <p class="header-desc">원하는 유형을 선택하면<br>바로 사용할 수 있는<br>한글 프롬프트를 제공합니다</p>
+  </div>
+</header>
+
+<!-- ══ MAIN ══ -->
+<div class="layout">
+
+  <!-- ❶ 요약·분석 -->
+  <div class="section" style="--section-color: var(--s1); --section-bg: var(--s1b);">
+    <div class="section-header" style="--section-color: var(--s1);">
+      <span class="section-num">01</span>
+      <span class="section-title">기사 · 논문 요약</span>
+      <span class="section-sub">SUMMARIZE</span>
+    </div>
+    <div class="cards" style="--section-color: var(--s1); --section-bg: var(--s1b);">
+
+      <div class="card" id="c-news" onclick="toggle('news')">
+        <div class="card-top">
+          <span class="card-icon">📰</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">뉴스 기사 요약</div>
+        <div class="card-desc">기사를 핵심 포인트와 배경 맥락으로 빠르게 정리합니다.</div>
+        <div class="card-tags">
+          <span class="tag">5줄 요약</span><span class="tag">핵심 키워드</span><span class="tag">사실·의견 구분</span>
+        </div>
+      </div>
+
+      <div class="card" id="c-paper" onclick="toggle('paper')">
+        <div class="card-top">
+          <span class="card-icon">📄</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">학술 논문 요약</div>
+        <div class="card-desc">연구 목적·방법·결과·시사점을 IMRAD 구조로 정리합니다.</div>
+        <div class="card-tags">
+          <span class="tag">연구 배경</span><span class="tag">방법론</span><span class="tag">주요 결과</span>
+        </div>
+      </div>
+
+      <div class="card" id="c-critical" onclick="toggle('critical')">
+        <div class="card-top">
+          <span class="card-icon">🔎</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">비판적 읽기 · 팩트체크</div>
+        <div class="card-desc">사실·의견·미확인 주장을 분리하고 숨겨진 맥락을 파악합니다.</div>
+        <div class="card-tags">
+          <span class="tag">Fact / Opinion</span><span class="tag">논리 오류</span><span class="tag">반론</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 패널들 -->
+    <div class="prompt-panel" id="p-news" style="--section-color: var(--s1); --section-bg2: var(--s1b);">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <span class="panel-head-icon">📰</span>
+          <div>
+            <div class="panel-head-title">뉴스 기사 요약</div>
+            <div class="panel-head-sub">기사 전문 또는 본문을 붙여넣고 사용하세요</div>
+          </div>
+        </div>
+        <button class="panel-close" onclick="close_('news')">✕</button>
+      </div>
+      <div class="vtabs">
+        <button class="vtab on" onclick="vtab('news',0,this)">기본 요약</button>
+        <button class="vtab" onclick="vtab('news',1,this)">비판적 읽기</button>
+        <button class="vtab" onclick="vtab('news',2,this)">복수 기사 비교</button>
+      </div>
+      <div class="vcontent on" id="news-0">
+        <div class="pbox" id="pt-news-0"><span class="r">당신은 전문 편집자입니다.</span> 아래 기사를 읽고 다음 형식으로 요약해 주세요.
+
+<span class="b">[기사 내용]</span>
+(여기에 기사 전문을 붙여넣으세요)
+
+<span class="h">📌 한 줄 요약:</span> (핵심을 20자 이내로)
+
+<span class="h">🔑 핵심 내용 3가지:</span>
+1. 
+2. 
+3. 
+
+<span class="h">📅 배경:</span> (이 사건·이슈의 맥락을 2~3문장으로)
+
+<span class="h">💡 시사점:</span> (이 기사가 갖는 의미 1~2문장)
+
+⚠️ 기자의 주관적 의견과 객관적 사실을 구분하여 표시해 주세요.</div>
+        <div class="pbox-footer">
+          <span class="pnote">[대괄호] 안 내용을 실제 기사로 교체하세요</span>
+          <button class="copybtn" onclick="copy_('pt-news-0',this)">⎘ 복사</button>
+        </div>
+        <div class="tip">
+          <div class="tip-label">💡 TIP</div>
+          <div class="tip-body">요약 뒤에 "이 기사의 신뢰도는 몇 점인지 이유와 함께 알려줘"를 추가하면 미디어 리터러시 연습에 효과적입니다.</div>
+        </div>
+      </div>
+      <div class="vcontent" id="news-1">
+        <div class="pbox" id="pt-news-1"><span class="r">당신은 미디어 리터러시 전문가입니다.</span> 아래 기사를 비판적으로 분석해 주세요.
+
+<span class="b">[기사 내용]</span>
+(여기에 기사를 붙여넣으세요)
+
+<span class="h">📰 기사 요약:</span> (3문장으로 핵심 내용 정리)
+
+<span class="h">✅ 사실 (Fact):</span> 객관적으로 확인 가능한 정보들
+
+<span class="h">💭 의견 (Opinion):</span> 기자 또는 인용된 주관적 판단들
+
+<span class="h">❓ 확인 필요:</span> 출처가 불명확하거나 추가 검증이 필요한 내용
+
+<span class="h">🔍 빠진 맥락:</span> 기사에서 다루지 않은 중요한 배경 또는 반대 시각</div>
+        <div class="pbox-footer">
+          <span class="pnote">사실/의견 구분 연습에 활용하세요</span>
+          <button class="copybtn" onclick="copy_('pt-news-1',this)">⎘ 복사</button>
+        </div>
+      </div>
+      <div class="vcontent" id="news-2">
+        <div class="pbox" id="pt-news-2"><span class="r">당신은 언론 분석 전문가입니다.</span> 아래 두 기사를 비교 분석해 주세요.
+
+<span class="b">[기사 A]</span>
+(여기에 첫 번째 기사를 붙여넣으세요)
+
+<span class="b">[기사 B]</span>
+(여기에 두 번째 기사를 붙여넣으세요)
+
+<span class="h">📊 비교표:</span>
+| 항목 | 기사 A | 기사 B |
+|------|--------|--------|
+| 주요 주장 | | |
+| 사용 근거 | | |
+| 인용 출처 | | |
+| 강조점 | | |
+
+<span class="h">🔍 두 기사의 차이가 생긴 이유:</span>
+
+<span class="h">⚖️ 더 신뢰할 수 있는 기사와 그 근거:</span></div>
+        <div class="pbox-footer">
+          <span class="pnote">같은 사건을 다룬 서로 다른 매체 기사 비교에 적합</span>
+          <button class="copybtn" onclick="copy_('pt-news-2',this)">⎘ 복사</button>
+        </div>
+      </div>
+    </div><!-- /p-news -->
+
+    <div class="prompt-panel" id="p-paper" style="--section-color: var(--s1); --section-bg2: var(--s1b);">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <span class="panel-head-icon">📄</span>
+          <div>
+            <div class="panel-head-title">학술 논문 요약</div>
+            <div class="panel-head-sub">초록만 입력해도 기본 요약이 가능합니다</div>
+          </div>
+        </div>
+        <button class="panel-close" onclick="close_('paper')">✕</button>
+      </div>
+      <div class="vtabs">
+        <button class="vtab on" onclick="vtab('paper',0,this)">구조적 요약</button>
+        <button class="vtab" onclick="vtab('paper',1,this)">비전공자용</button>
+      </div>
+      <div class="vcontent on" id="paper-0">
+        <div class="pbox" id="pt-paper-0"><span class="r">당신은 학술 연구 전문가입니다.</span> 아래 논문을 IMRAD 구조에 따라 요약해 주세요.
+
+<span class="b">[논문 내용]</span>
+(초록 또는 전문을 붙여넣으세요)
+
+<span class="h">📚 연구 개요</span>
+- 연구 주제: 
+- 연구 목적: 
+- 연구 배경: 
+
+<span class="h">🔬 연구 방법</span>
+- 연구 설계: 
+- 데이터/대상: 
+- 분석 방법: 
+
+<span class="h">📊 주요 결과</span>
+- 핵심 발견 1: 
+- 핵심 발견 2: 
+- 핵심 발견 3: 
+
+<span class="h">💡 결론 및 시사점</span>
+- 이론적 기여: 
+- 실용적 의미: 
+- 연구 한계: 
+
+<span class="h">🔗 후속 연구 방향:</span></div>
+        <div class="pbox-footer">
+          <span class="pnote">분야 전문용어가 많다면 "용어 설명도 포함해줘" 추가</span>
+          <button class="copybtn" onclick="copy_('pt-paper-0',this)">⎘ 복사</button>
+        </div>
+      </div>
+      <div class="vcontent" id="paper-1">
+        <div class="pbox" id="pt-paper-1"><span class="r">당신은 과학 커뮤니케이터입니다.</span> 아래 논문을 전공 지식이 없는 일반인도 이해할 수 있도록 쉽게 설명해 주세요.
+
+<span class="b">[논문 내용]</span>
+(여기에 논문 내용을 붙여넣으세요)
+
+<span class="h">🤔 이 연구는 왜 했나요?</span>
+(연구 동기를 일상 언어로)
+
+<span class="h">🧪 어떻게 연구했나요?</span>
+(비유와 예시를 들어 설명)
+
+<span class="h">💡 무엇을 발견했나요?</span>
+(핵심 결과 3가지)
+
+<span class="h">🌍 우리 삶과 어떤 관련이 있나요?</span>
+(실생활 적용 가능성과 의의)
+
+<span class="h">📖 더 알고 싶다면?</span>
+(관련 검색 키워드 3개)</div>
+        <div class="pbox-footer">
+          <span class="pnote">발표 자료나 수업 설명용으로 활용 가능</span>
+          <button class="copybtn" onclick="copy_('pt-paper-1',this)">⎘ 복사</button>
+        </div>
+      </div>
+    </div><!-- /p-paper -->
+
+    <div class="prompt-panel" id="p-critical" style="--section-color: var(--s1); --section-bg2: var(--s1b);">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <span class="panel-head-icon">🔎</span>
+          <div>
+            <div class="panel-head-title">비판적 읽기 · 팩트체크</div>
+            <div class="panel-head-sub">정보의 신뢰도를 스스로 판단하는 연습</div>
+          </div>
+        </div>
+        <button class="panel-close" onclick="close_('critical')">✕</button>
+      </div>
+      <div class="vtabs">
+        <button class="vtab on" onclick="vtab('critical',0,this)">논리 구조 분석</button>
+        <button class="vtab" onclick="vtab('critical',1,this)">주장·근거 분리</button>
+      </div>
+      <div class="vcontent on" id="critical-0">
+        <div class="pbox" id="pt-critical-0"><span class="r">당신은 논리학 전문가입니다.</span> 아래 텍스트의 논리 구조를 분석해 주세요.
+
+<span class="b">[분석할 텍스트]</span>
+(기사, 논문, 칼럼 등 분석할 내용을 붙여넣으세요)
+
+<span class="h">🧩 핵심 주장:</span>
+(글이 궁극적으로 말하려는 것)
+
+<span class="h">📋 근거 분석:</span>
+- 강한 근거: 
+- 약한 근거: 
+- 근거 없이 전제된 것: 
+
+<span class="h">⚠️ 논리적 오류:</span>
+(발견된 오류와 개선 방법)
+
+<span class="h">🔄 예상 반론:</span>
+(이 주장에 반대하는 사람들의 논거)
+
+<span class="h">📊 논리 완성도 평가:</span> /10점 (이유 포함)</div>
+        <div class="pbox-footer">
+          <span class="pnote">설득적 글쓰기 평가에 특히 효과적</span>
+          <button class="copybtn" onclick="copy_('pt-critical-0',this)">⎘ 복사</button>
+        </div>
+      </div>
+      <div class="vcontent" id="critical-1">
+        <div class="pbox" id="pt-critical-1"><span class="r">당신은 비판적 사고 교육 전문가입니다.</span> 아래 글에서 주장과 근거를 분리하고 신뢰도를 평가해 주세요.
+
+<span class="b">[분석할 텍스트]</span>
+(여기에 텍스트를 붙여넣으세요)
+
+<span class="h">1️⃣ 주장 목록:</span>
+(글에서 제시하는 모든 주장을 나열)
+
+<span class="h">2️⃣ 주장별 근거 평가표:</span>
+| 주장 | 제시된 근거 | 근거 유형 | 신뢰도 |
+|------|------------|----------|--------|
+(근거 유형: 통계/전문가 의견/사례/논리적 추론/감정 호소)
+
+<span class="h">3️⃣ 추가로 확인해야 할 사항:</span>
+
+<span class="h">4️⃣ 종합 판단:</span>
+이 글의 주장은 얼마나 설득력이 있는가? (이유 포함)</div>
+        <div class="pbox-footer">
+          <span class="pnote">토론 수업, 논술 준비에 활용 가능</span>
+          <button class="copybtn" onclick="copy_('pt-critical-1',this)">⎘ 복사</button>
+        </div>
+      </div>
+    </div><!-- /p-critical -->
+  </div><!-- /section 01 -->
+
+
+  <!-- ❷ 재작성·번역 -->
+  <div class="section" style="--section-color: var(--s2); --section-bg: var(--s2b);">
+    <div class="section-header" style="--section-color: var(--s2);">
+      <span class="section-num" style="background: var(--s2);">02</span>
+      <span class="section-title">수준별 · 언어별 재작성</span>
+      <span class="section-sub">REWRITE / TRANSLATE</span>
+    </div>
+    <div class="cards" style="--section-color: var(--s2); --section-bg: var(--s2b);">
+
+      <div class="card" id="c-level" onclick="toggle('level')">
+        <div class="card-top">
+          <span class="card-icon">📶</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">수준별 재작성</div>
+        <div class="card-desc">같은 내용을 어린이·일반인·전문가 눈높이에 맞게 각각 다르게 씁니다.</div>
+        <div class="card-tags">
+          <span class="tag">초보자</span><span class="tag">일반인</span><span class="tag">전문가</span><span class="tag">3단 비교</span>
+        </div>
+      </div>
+
+      <div class="card" id="c-trans" onclick="toggle('trans')">
+        <div class="card-top">
+          <span class="card-icon">🌐</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">번역 & 현지화</div>
+        <div class="card-desc">단순 번역을 넘어 문화·어감까지 살린 자연스러운 현지화 번역을 합니다.</div>
+        <div class="card-tags">
+          <span class="tag">한→영</span><span class="tag">영→한</span><span class="tag">어감 보정</span><span class="tag">격식 선택</span>
+        </div>
+      </div>
+
+      <div class="card" id="c-tone" onclick="toggle('tone')">
+        <div class="card-top">
+          <span class="card-icon">🎚️</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">문체 · 톤 변환</div>
+        <div class="card-desc">딱딱한 공문을 부드럽게, 구어체를 격식체로, 원하는 분위기로 변환합니다.</div>
+        <div class="card-tags">
+          <span class="tag">공식↔비공식</span><span class="tag">전문↔친근</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 패널들 -->
+    <div class="prompt-panel" id="p-level" style="--section-color: var(--s2); --section-bg2: var(--s2b);">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <span class="panel-head-icon">📶</span>
+          <div>
+            <div class="panel-head-title">수준별 재작성</div>
+            <div class="panel-head-sub">독자 눈높이를 지정하면 맞춤형으로 재작성</div>
+          </div>
+        </div>
+        <button class="panel-close" onclick="close_('level')">✕</button>
+      </div>
+      <div class="vtabs">
+        <button class="vtab on" onclick="vtab('level',0,this)">쉬운 버전</button>
+        <button class="vtab" onclick="vtab('level',1,this)">전문가 버전</button>
+        <button class="vtab" onclick="vtab('level',2,this)">3단 비교</button>
+      </div>
+      <div class="vcontent on" id="level-0">
+        <div class="pbox" id="pt-level-0"><span class="r">당신은 어린이 교육 전문가입니다.</span> 아래 내용을 초등학생(10세)도 이해할 수 있도록 쉽게 바꿔 주세요.
+
+<span class="b">[원문]</span>
+(여기에 원문을 붙여넣으세요)
+
+<span class="h">📝 재작성 기준:</span>
+- 어려운 용어 → 쉬운 말로 바꾸거나 괄호 안에 설명 추가
+- 한 문장에 하나의 정보만 담기
+- 일상적인 비유와 예시 적극 활용
+- 흥미를 유발하는 표현 사용
+
+<span class="h">✍️ 쉬운 버전:</span>
+
+<span class="h">📌 바꾼 표현 목록:</span>
+(원래 표현 → 바꾼 표현, 이유)</div>
+        <div class="pbox-footer">
+          <span class="pnote">대상 연령을 "중학생" "비전공 직장인" 등으로 바꿔도 됩니다</span>
+          <button class="copybtn" onclick="copy_('pt-level-0',this)">⎘ 복사</button>
+        </div>
+      </div>
+      <div class="vcontent" id="level-1">
+        <div class="pbox" id="pt-level-1"><span class="r">당신은 해당 분야 전문가입니다.</span> 아래 내용을 전문가 독자를 대상으로 더 정확하고 심층적으로 재작성해 주세요.
+
+<span class="b">[원문]</span>
+(여기에 원문을 붙여넣으세요)
+
+<span class="b">[대상 분야·수준]</span>: (예: 의학 전문의 / 금융 애널리스트 / 소프트웨어 엔지니어)
+
+<span class="h">📝 재작성 기준:</span>
+- 전문 용어와 학술적 표현 적극 사용
+- 원문에서 부족한 맥락·배경 지식 보완
+- 정밀도와 구체성을 높임
+- 관련 개념·이론과 연결
+
+<span class="h">✍️ 전문가 버전:</span></div>
+        <div class="pbox-footer">
+          <span class="pnote">[대상 분야·수준]을 구체적으로 적을수록 정확합니다</span>
+          <button class="copybtn" onclick="copy_('pt-level-1',this)">⎘ 복사</button>
+        </div>
+      </div>
+      <div class="vcontent" id="level-2">
+        <div class="pbox" id="pt-level-2"><span class="r">당신은 커뮤니케이션 전문가입니다.</span> 아래 내용을 세 가지 독자 수준으로 각각 재작성해서 비교해 주세요.
+
+<span class="b">[원문]</span>
+(여기에 원문을 붙여넣으세요)
+
+---
+<span class="h">👶 초보자 버전</span> (관련 지식 전무):
+(일상 언어, 비유 활용, 짧은 문장)
+
+---
+<span class="h">👤 일반인 버전</span> (기본 상식 보유):
+(표준 언어, 적절한 용어, 균형 잡힌 설명)
+
+---
+<span class="h">🎓 전문가 버전</span> (해당 분야 전문 지식):
+(전문 용어, 압축적 표현, 심층 내용)
+
+---
+<span class="h">💡 세 버전의 핵심 차이점:</span></div>
+        <div class="pbox-footer">
+          <span class="pnote">수업 발표 자료 준비에 특히 유용합니다</span>
+          <button class="copybtn" onclick="copy_('pt-level-2',this)">⎘ 복사</button>
+        </div>
+        <div class="tip">
+          <div class="tip-label">💡 TIP</div>
+          <div class="tip-body">같은 뉴스 기사나 논문 요약본을 넣고 세 버전을 비교해보면, 정보 전달 방식의 차이를 직접 실감할 수 있습니다.</div>
+        </div>
+      </div>
+    </div><!-- /p-level -->
+
+    <div class="prompt-panel" id="p-trans" style="--section-color: var(--s2); --section-bg2: var(--s2b);">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <span class="panel-head-icon">🌐</span>
+          <div>
+            <div class="panel-head-title">번역 & 현지화</div>
+            <div class="panel-head-sub">번역 목적과 톤을 지정할수록 자연스러워집니다</div>
+          </div>
+        </div>
+        <button class="panel-close" onclick="close_('trans')">✕</button>
+      </div>
+      <div class="vtabs">
+        <button class="vtab on" onclick="vtab('trans',0,this)">한→영</button>
+        <button class="vtab" onclick="vtab('trans',1,this)">영→한</button>
+        <button class="vtab" onclick="vtab('trans',2,this)">번역 품질 검토</button>
+      </div>
+      <div class="vcontent on" id="trans-0">
+        <div class="pbox" id="pt-trans-0"><span class="r">당신은 10년 경력의 전문 번역가입니다.</span> 아래 한국어 텍스트를 영어로 번역해 주세요.
+
+<span class="b">[원문 (한국어)]</span>
+(여기에 원문을 붙여넣으세요)
+
+<span class="b">[번역 목적]</span>: (예: 비즈니스 이메일 / 학술 초록 / SNS 게시글 / 공식 발표문)
+<span class="b">[톤]</span>: formal / semi-formal / casual 중 선택
+
+<span class="h">📋 번역 기준:</span>
+- 원문의 의도와 뉘앙스 최대한 보존
+- 영어 원어민이 자연스럽게 읽을 수 있는 표현
+- 한국 특유의 표현은 문화적으로 적절하게 현지화
+
+<span class="h">✍️ 영어 번역본:</span>
+
+<span class="h">🔍 번역 노트:</span> (의역하거나 어려웠던 표현 설명)</div>
+        <div class="pbox-footer">
+          <span class="pnote">[번역 목적]과 [톤]을 반드시 채워주세요</span>
+          <button class="copybtn" onclick="copy_('pt-trans-0',this)">⎘ 복사</button>
+        </div>
+      </div>
+      <div class="vcontent" id="trans-1">
+        <div class="pbox" id="pt-trans-1"><span class="r">당신은 전문 번역가이자 한국어 전문가입니다.</span> 아래 영어 텍스트를 자연스러운 한국어로 번역해 주세요.
+
+<span class="b">[원문 (English)]</span>
+(여기에 원문을 붙여넣으세요)
+
+<span class="b">[번역 목적]</span>: (예: 업무 문서 / 기술 매뉴얼 / 마케팅 콘텐츠)
+
+<span class="h">📋 번역 기준:</span>
+- 직역보다 의역을 통한 자연스러운 한국어 우선
+- 문화적 맥락에 맞게 현지화
+- 목적에 맞는 경어 수준 유지
+
+<span class="h">✍️ 한국어 번역본:</span>
+
+<span class="h">🔍 번역 노트:</span> (영어 특유 표현, 문화적 차이가 있는 부분 설명)</div>
+        <div class="pbox-footer">
+          <span class="pnote">격식 수준이 중요하다면 "존댓말/반말" 명시하세요</span>
+          <button class="copybtn" onclick="copy_('pt-trans-1',this)">⎘ 복사</button>
+        </div>
+      </div>
+      <div class="vcontent" id="trans-2">
+        <div class="pbox" id="pt-trans-2"><span class="r">당신은 번역 품질 심사 전문가입니다.</span> 아래 원문과 번역본을 비교하여 번역 품질을 평가해 주세요.
+
+<span class="b">[원문]</span>
+(여기에 원문을 붙여넣으세요)
+
+<span class="b">[번역본]</span>
+(여기에 번역본을 붙여넣으세요)
+
+<span class="h">📊 평가 항목:</span>
+| 항목 | 점수(/10) | 코멘트 |
+|------|----------|--------|
+| 정확성 (의미 일치) | | |
+| 자연스러움 (어감) | | |
+| 문화 현지화 | | |
+| 문체 일관성 | | |
+
+<span class="h">⚠️ 오역 또는 개선 필요 부분:</span>
+(원문 구절 → 현재 번역 → 개선 번역 형식으로)
+
+<span class="h">✅ 수정된 최종 번역본:</span></div>
+        <div class="pbox-footer">
+          <span class="pnote">기계번역 결과물 검토·개선에 활용하세요</span>
+          <button class="copybtn" onclick="copy_('pt-trans-2',this)">⎘ 복사</button>
+        </div>
+      </div>
+    </div><!-- /p-trans -->
+
+    <div class="prompt-panel" id="p-tone" style="--section-color: var(--s2); --section-bg2: var(--s2b);">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <span class="panel-head-icon">🎚️</span>
+          <div>
+            <div class="panel-head-title">문체 · 톤 변환</div>
+            <div class="panel-head-sub">원하는 최종 톤을 구체적으로 설명할수록 정확합니다</div>
+          </div>
+        </div>
+        <button class="panel-close" onclick="close_('tone')">✕</button>
+      </div>
+      <div class="vtabs">
+        <button class="vtab on" onclick="vtab('tone',0,this)">격식체로</button>
+        <button class="vtab" onclick="vtab('tone',1,this)">친근하게</button>
+      </div>
+      <div class="vcontent on" id="tone-0">
+        <div class="pbox" id="pt-tone-0"><span class="r">당신은 공문서 작성 전문가입니다.</span> 아래 구어체·비격식 텍스트를 공식적인 격식체로 변환해 주세요.
+
+<span class="b">[원문]</span>
+(여기에 원문을 붙여넣으세요)
+
+<span class="h">📝 변환 기준:</span>
+- 구어체 → 문어체
+- 줄임말과 비공식 표현 제거
+- 공손하고 명확한 표현으로 통일
+- 문서에 적합한 문장 구조
+
+<span class="h">✍️ 격식체 버전:</span>
+
+<span class="h">🔍 주요 변경 사항:</span>
+(원래 표현 → 바뀐 표현, 이유)</div>
+        <div class="pbox-footer">
+          <span class="pnote">보고서·공문·제안서 작성 전 초안 정제에 활용</span>
+          <button class="copybtn" onclick="copy_('pt-tone-0',this)">⎘ 복사</button>
+        </div>
+      </div>
+      <div class="vcontent" id="tone-1">
+        <div class="pbox" id="pt-tone-1"><span class="r">당신은 카피라이터입니다.</span> 아래 딱딱하고 형식적인 텍스트를 친근하고 읽기 쉬운 톤으로 바꿔 주세요.
+
+<span class="b">[원문]</span>
+(여기에 원문을 붙여넣으세요)
+
+<span class="b">[대상 독자]</span>: (예: 20~30대 직장인 / 학부모 / 대학생)
+
+<span class="h">📝 변환 기준:</span>
+- 전문 용어는 쉬운 말로 풀어서
+- 능동태 중심의 짧고 명쾌한 문장
+- 독자에게 직접 말하는 듯한 표현
+- 불필요한 형식적 표현 제거
+
+<span class="h">✍️ 친근한 버전:</span></div>
+        <div class="pbox-footer">
+          <span class="pnote">[대상 독자]를 구체적으로 쓸수록 어감이 정확해집니다</span>
+          <button class="copybtn" onclick="copy_('pt-tone-1',this)">⎘ 복사</button>
+        </div>
+      </div>
+    </div><!-- /p-tone -->
+  </div><!-- /section 02 -->
+
+
+  <!-- ❸ 문법검토·감수 -->
+  <div class="section" style="--section-color: var(--s3); --section-bg: var(--s3b);">
+    <div class="section-header" style="--section-color: var(--s3);">
+      <span class="section-num" style="background: var(--s3);">03</span>
+      <span class="section-title">문법 검토 · 감수</span>
+      <span class="section-sub">PROOFREAD / REVIEW</span>
+    </div>
+    <div class="cards" style="--section-color: var(--s3); --section-bg: var(--s3b);">
+
+      <div class="card" id="c-grammar" onclick="toggle('grammar')">
+        <div class="card-top">
+          <span class="card-icon">✏️</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">맞춤법 · 문법 교정</div>
+        <div class="card-desc">맞춤법·띄어쓰기·문장 구조·어색한 표현까지 꼼꼼하게 교정합니다.</div>
+        <div class="card-tags">
+          <span class="tag">맞춤법</span><span class="tag">띄어쓰기</span><span class="tag">문장 흐름</span>
+        </div>
+      </div>
+
+      <div class="card" id="c-eng-proof" onclick="toggle('eng-proof')">
+        <div class="card-top">
+          <span class="card-icon">🅰️</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">영문 교정 (Proofreading)</div>
+        <div class="card-desc">문법·철자·어색한 표현을 교정하고 원어민 수준의 자연스러운 영어로 다듬습니다.</div>
+        <div class="card-tags">
+          <span class="tag">Grammar</span><span class="tag">Word Choice</span><span class="tag">Fluency</span>
+        </div>
+      </div>
+
+      <div class="card" id="c-clarity" onclick="toggle('clarity')">
+        <div class="card-top">
+          <span class="card-icon">💎</span>
+          <span class="card-arrow">→</span>
+        </div>
+        <div class="card-title">명확성 · 가독성 개선</div>
+        <div class="card-desc">문법 오류는 없지만 어렵고 장황한 문장을 더 명확하고 읽기 쉽게 개선합니다.</div>
+        <div class="card-tags">
+          <span class="tag">문장 간결화</span><span class="tag">능동태</span><span class="tag">구조 개선</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 패널들 -->
+    <div class="prompt-panel" id="p-grammar" style="--section-color: var(--s3); --section-bg2: var(--s3b);">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <span class="panel-head-icon">✏️</span>
+          <div>
+            <div class="panel-head-title">맞춤법 · 문법 교정</div>
+            <div class="panel-head-sub">원문 → 수정본 비교 형식으로 제공됩니다</div>
+          </div>
+        </div>
+        <button class="panel-close" onclick="close_('grammar')">✕</button>
+      </div>
+      <div class="vtabs">
+        <button class="vtab on" onclick="vtab('grammar',0,this)">전체 교정</button>
+        <button class="vtab" onclick="vtab('grammar',1,this)">항목별 체크리스트</button>
+      </div>
+      <div class="vcontent on" id="grammar-0">
+        <div class="pbox" id="pt-grammar-0"><span class="r">당신은 출판 경력 15년의 교정·교열 전문가입니다.</span> 아래 텍스트를 꼼꼼하게 검토하고 교정해 주세요.
+
+<span class="b">[원문]</span>
+(여기에 텍스트를 붙여넣으세요)
+
+<span class="h">🔍 검토 항목:</span>
+1. 맞춤법 오류
+2. 띄어쓰기 오류
+3. 문장 부호 사용
+4. 어색하거나 중복된 표현
+5. 문장 구조 및 호응 관계
+6. 전체 흐름과 가독성
+
+<span class="h">📝 교정본:</span>
+(수정된 전체 텍스트)
+
+<span class="h">📌 주요 수정 사항:</span>
+| 번호 | 원문 | 수정 | 이유 |
+|------|------|------|------|
+
+<span class="h">💡 추가 개선 제안:</span> (필수는 아니지만 더 나아질 수 있는 부분)</div>
+        <div class="pbox-footer">
+          <span class="pnote">수정 전·후 비교표로 학습 포인트 파악 가능</span>
+          <button class="copybtn" onclick="copy_('pt-grammar-0',this)">⎘ 복사</button>
+        </div>
+      </div>
+      <div class="vcontent" id="grammar-1">
+        <div class="pbox" id="pt-grammar-1"><span class="r">당신은 한국어 교육 전문가입니다.</span> 아래 텍스트를 항목별로 체계적으로 검토해 주세요.
+
+<span class="b">[원문]</span>
+(여기에 텍스트를 붙여넣으세요)
+
+<span class="h">체크리스트 결과:</span>
+
+☐ <span class="h">맞춤법:</span>
+  - 오류 발견: (있음/없음)
+  - 오류 목록: 
+
+☐ <span class="h">띄어쓰기:</span>
+  - 오류 발견: (있음/없음)
+  - 오류 목록: 
+
+☐ <span class="h">문장 부호:</span>
+  - 오류 발견: (있음/없음)
+
+☐ <span class="h">어색한 표현:</span>
+  - 발견된 표현 및 대안: 
+
+☐ <span class="h">문장 호응:</span>
+  - 주어-서술어 불일치: 
+  - 시제 불일치: 
+
+<span class="h">종합 평가:</span> 전체 완성도 /10점</div>
+        <div class="pbox-footer">
+          <span class="pnote">글쓰기 수업 자기 점검용으로 활용 가능</span>
+          <button class="copybtn" onclick="copy_('pt-grammar-1',this)">⎘ 복사</button>
+        </div>
+      </div>
+    </div><!-- /p-grammar -->
+
+    <div class="prompt-panel" id="p-eng-proof" style="--section-color: var(--s3); --section-bg2: var(--s3b);">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <span class="panel-head-icon">🅰️</span>
+          <div>
+            <div class="panel-head-title">영문 교정 (Proofreading)</div>
+            <div class="panel-head-sub">목적과 독자를 명시하면 더 적합한 수정을 받을 수 있습니다</div>
+          </div>
+        </div>
+        <button class="panel-close" onclick="close_('eng-proof')">✕</button>
+      </div>
+      <div class="vtabs">
+        <button class="vtab on" onclick="vtab('eng-proof',0,this)">기본 교정</button>
+        <button class="vtab" onclick="vtab('eng-proof',1,this)">아카데믹 교정</button>
+      </div>
+      <div class="vcontent on" id="eng-proof-0">
+        <div class="pbox" id="pt-eng-proof-0"><span class="r">You are an expert English editor with native-level proficiency.</span> Please proofread and improve the following text.
+
+<span class="b">[Original Text]</span>
+(Paste your English text here)
+
+<span class="b">[Purpose]</span>: (e.g., business email / academic abstract / presentation)
+<span class="b">[Target readers]</span>: (e.g., native English speakers / international professionals)
+
+<span class="h">Check for:</span>
+1. Grammar and syntax errors
+2. Spelling and punctuation
+3. Awkward or unnatural phrasing
+4. Word choice and tone consistency
+5. Sentence structure and flow
+
+<span class="h">Corrected Version:</span>
+
+<span class="h">Key Changes Made:</span>
+| # | Original | Corrected | Reason |
+|---|----------|-----------|--------|
+
+<span class="h">Style Suggestions:</span> (optional, further improvements)</div>
+        <div class="pbox-footer">
+          <span class="pnote">영문 이메일·보고서 제출 전 최종 검토에 활용</span>
+          <button class="copybtn" onclick="copy_('pt-eng-proof-0',this)">⎘ 복사</button>
+        </div>
+      </div>
+      <div class="vcontent" id="eng-proof-1">
+        <div class="pbox" id="pt-eng-proof-1"><span class="r">You are an academic writing specialist.</span> Please review and improve the following academic text to meet scholarly writing standards.
+
+<span class="b">[Original Text]</span>
+(Paste your academic text here)
+
+<span class="b">[Field / Discipline]</span>: (e.g., Computer Science / Social Sciences / Medicine)
+
+<span class="h">Academic Writing Checklist:</span>
+
+☐ <span class="h">Formal academic tone</span> (no contractions, colloquialisms)
+☐ <span class="h">Precise word choice</span> (avoid vague language)
+☐ <span class="h">Passive/active voice</span> (appropriate for discipline)
+☐ <span class="h">Hedging language</span> (appropriate certainty levels)
+☐ <span class="h">Citation integration</span> (if applicable)
+☐ <span class="h">Paragraph cohesion</span> (clear topic sentences)
+
+<span class="h">Revised Text:</span>
+
+<span class="h">Explanation of Changes:</span></div>
+        <div class="pbox-footer">
+          <span class="pnote">논문·학술 보고서·과제 영문 작성에 적합</span>
+          <button class="copybtn" onclick="copy_('pt-eng-proof-1',this)">⎘ 복사</button>
+        </div>
+      </div>
+    </div><!-- /p-eng-proof -->
+
+    <div class="prompt-panel" id="p-clarity" style="--section-color: var(--s3); --section-bg2: var(--s3b);">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <span class="panel-head-icon">💎</span>
+          <div>
+            <div class="panel-head-title">명확성 · 가독성 개선</div>
+            <div class="panel-head-sub">문법적으로 맞지만 어려운 글을 쉽고 명확하게</div>
+          </div>
+        </div>
+        <button class="panel-close" onclick="close_('clarity')">✕</button>
+      </div>
+      <div class="vtabs">
+        <button class="vtab on" onclick="vtab('clarity',0,this)">가독성 개선</button>
+        <button class="vtab" onclick="vtab('clarity',1,this)">문장 간결화</button>
+      </div>
+      <div class="vcontent on" id="clarity-0">
+        <div class="pbox" id="pt-clarity-0"><span class="r">당신은 글쓰기 코치입니다.</span> 아래 텍스트는 문법적 오류는 없지만 읽기 어렵습니다. 더 명확하고 가독성 높은 글로 개선해 주세요.
+
+<span class="b">[원문]</span>
+(여기에 텍스트를 붙여넣으세요)
+
+<span class="h">📊 현재 글의 문제점 분석:</span>
+- 문장 평균 길이: (길다/적절/짧다)
+- 주요 문제: (복잡한 구조 / 중복 표현 / 추상적 표현 / 수동태 남용)
+
+<span class="h">🔧 개선 원칙 적용:</span>
+1. 긴 문장 → 2~3개의 짧은 문장으로 분리
+2. 수동태 → 가능한 한 능동태로
+3. 추상적 표현 → 구체적 표현으로
+4. 중복 표현 제거
+
+<span class="h">✍️ 개선된 버전:</span>
+
+<span class="h">📈 개선 전·후 비교:</span>
+(가독성 점수: 전 /10 → 후 /10, 이유)</div>
+        <div class="pbox-footer">
+          <span class="pnote">보고서·기획서 초안 다듬기에 활용하세요</span>
+          <button class="copybtn" onclick="copy_('pt-clarity-0',this)">⎘ 복사</button>
+        </div>
+        <div class="tip">
+          <div class="tip-label">💡 TIP</div>
+          <div class="tip-body">문법 교정과 가독성 개선은 별도로 진행하는 것이 더 정확합니다. 먼저 맞춤법 교정을 마친 뒤, 이 프롬프트로 추가 개선하세요.</div>
+        </div>
+      </div>
+      <div class="vcontent" id="clarity-1">
+        <div class="pbox" id="pt-clarity-1"><span class="r">당신은 편집 전문가입니다.</span> 아래 텍스트의 모든 문장을 더 간결하게 만들어 주세요.
+
+<span class="b">[원문]</span>
+(여기에 텍스트를 붙여넣으세요)
+
+<span class="h">간결화 규칙:</span>
+1. 의미 없는 수식어 제거 ("매우", "정말로", "사실상" 등)
+2. 이중 부정 → 긍정으로
+3. 한 문장에 하나의 핵심 메시지만
+4. 형용사 나열 → 가장 정확한 하나로
+
+<span class="h">간결화 결과표:</span>
+| 원래 문장 | 간결화 문장 | 절약한 글자 수 |
+|----------|------------|--------------|
+
+<span class="h">최종 간결화 버전:</span>
+
+<span class="h">요약:</span> 원래 분량 대비 __% 줄었으며, 핵심 의미는 완전히 보존됨</div>
+        <div class="pbox-footer">
+          <span class="pnote">분량 제한이 있는 글(자기소개서, 요약문)에 특히 유용</span>
+          <button class="copybtn" onclick="copy_('pt-clarity-1',this)">⎘ 복사</button>
+        </div>
+      </div>
+    </div><!-- /p-clarity -->
+  </div><!-- /section 03 -->
+
+</div><!-- /layout -->
+
+<footer>
+  SESSION 08 · 정보 탐색 / 요약 / 번역 · AI 활용 실습 프롬프트 가이드
+</footer>
+
+<script>
+const panels = {};
+const activeCards = {};
+
+function toggle(id) {
+  const panel = document.getElementById('p-' + id);
+  const card  = document.getElementById('c-' + id);
+  const isOpen = panel.classList.contains('open');
+
+  // 같은 섹션의 다른 패널 닫기
+  document.querySelectorAll('.prompt-panel.open').forEach(p => {
+    if (p !== panel) {
+      p.classList.remove('open');
+      const otherId = p.id.replace('p-','');
+      const otherCard = document.getElementById('c-' + otherId);
+      if (otherCard) otherCard.classList.remove('active');
+    }
+  });
+
+  if (isOpen) {
+    panel.classList.remove('open');
+    card.classList.remove('active');
+  } else {
+    panel.classList.add('open');
+    card.classList.add('active');
+    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
+}
+
+function close_(id) {
+  document.getElementById('p-' + id).classList.remove('open');
+  document.getElementById('c-' + id).classList.remove('active');
+}
+
+function vtab(id, idx, btn) {
+  const panel = document.getElementById('p-' + id);
+  panel.querySelectorAll('.vtab').forEach((t,i) => t.classList.toggle('on', i === idx));
+  panel.querySelectorAll('.vcontent').forEach((c,i) => c.classList.toggle('on', i === idx));
+}
+
+function copy_(elId, btn) {
+  const el = document.getElementById(elId);
+  const text = el.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ 복사됨';
+    btn.classList.add('done');
+    setTimeout(() => {
+      btn.innerHTML = '⎘ 복사';
+      btn.classList.remove('done');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>

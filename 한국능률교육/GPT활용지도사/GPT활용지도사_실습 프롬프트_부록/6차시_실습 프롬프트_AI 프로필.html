@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 프로필 사진 만들기 가이드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --surface2: #1c1c28;
+    --accent: #7c5cfc;
+    --accent2: #fc5c7d;
+    --accent3: #5cf0fc;
+    --text: #f0f0f8;
+    --text-muted: #888;
+    --border: rgba(124,92,252,0.25);
+    --glow: 0 0 30px rgba(124,92,252,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background noise */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Gradient orbs */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(124,92,252,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb2 {
+    position: fixed;
+    bottom: -200px; left: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(252,92,125,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInDown 0.8s ease;
+  }
+
+  .header .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent3);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 8vw, 80px);
+    letter-spacing: 2px;
+    line-height: 1;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+
+  .header p {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+
+  /* Main menu */
+  .main-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 50px;
+    animation: fadeInUp 0.8s ease 0.2s both;
+  }
+
+  .menu-btn {
+    position: relative;
+    padding: 22px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    overflow: hidden;
+    group: true;
+  }
+
+  .menu-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 16px;
+  }
+
+  .menu-btn:hover::before, .menu-btn.active::before {
+    opacity: 0.12;
+  }
+
+  .menu-btn.active {
+    border-color: var(--accent);
+    box-shadow: var(--glow);
+  }
+
+  .menu-btn .icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: block;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+  }
+
+  .menu-btn:hover .icon {
+    transform: scale(1.15) translateY(-2px);
+  }
+
+  .menu-btn .label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    position: relative;
+    z-index: 1;
+    line-height: 1.4;
+  }
+
+  .menu-btn.active .label {
+    color: #fff;
+  }
+
+  /* Panel */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    display: none;
+    animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .panel.active {
+    display: block;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent3);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  /* Option grid */
+  .option-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .option-chip {
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .option-chip:hover {
+    border-color: var(--accent);
+    color: var(--text);
+    background: rgba(124,92,252,0.1);
+  }
+
+  .option-chip.selected {
+    background: linear-gradient(135deg, rgba(124,92,252,0.25), rgba(252,92,125,0.15));
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(124,92,252,0.2);
+  }
+
+  /* Sub-section */
+  .sub-section {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .sub-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Custom input */
+  .custom-input-area {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .custom-input {
+    flex: 1;
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .custom-input:focus {
+    border-color: var(--accent);
+  }
+
+  .custom-input::placeholder {
+    color: rgba(255,255,255,0.2);
+  }
+
+  .apply-btn {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    white-space: nowrap;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .apply-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+
+  /* Prompt result */
+  .prompt-result {
+    margin-top: 32px;
+    display: none;
+    animation: fadeInUp 0.4s ease;
+  }
+
+  .prompt-result.visible {
+    display: block;
+  }
+
+  .prompt-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .prompt-box {
+    position: relative;
+    background: #0d0d14;
+    border: 1px solid rgba(124,92,252,0.3);
+    border-radius: 14px;
+    padding: 20px 24px;
+    padding-right: 100px;
+  }
+
+  .prompt-text {
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: #d0d0e8;
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .prompt-text .highlight {
+    color: var(--accent3);
+    font-weight: 700;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 16px; right: 16px;
+    padding: 8px 14px;
+    background: rgba(124,92,252,0.2);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .copy-btn:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .copy-btn.copied {
+    background: rgba(92,240,252,0.2);
+    border-color: var(--accent3);
+    color: var(--accent3);
+  }
+
+  /* Tip box */
+  .tip-box {
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: rgba(92,240,252,0.05);
+    border: 1px solid rgba(92,240,252,0.15);
+    border-radius: 10px;
+    font-size: 12.5px;
+    color: rgba(92,240,252,0.7);
+    line-height: 1.6;
+  }
+
+  .tip-box strong {
+    color: var(--accent3);
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+  /* Tag colors */
+  .tag-purple { color: #b39dfc; }
+  .tag-pink   { color: #fc9db3; }
+  .tag-cyan   { color: var(--accent3); }
+  .tag-gold   { color: #fcd97c; }
+</style>
+</head>
+<body>
+<div class="orb2"></div>
+
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="eyebrow">🎓 실습 가이드 · AI Profile Workshop</div>
+    <h1>AI 프로필 사진<br>만들기</h1>
+    <p>원하는 옵션을 선택하면 바로 사용할 수 있는 프롬프트를 제공합니다</p>
+  </div>
+
+  <!-- Main Menu -->
+  <div class="main-menu">
+    <div class="menu-btn" onclick="openPanel('profile')">
+      <span class="icon">🪄</span>
+      <span class="label">프로필 사진<br>만들기</span>
+    </div>
+    <div class="menu-btn" onclick="openPanel('pose')">
+      <span class="icon">🧍</span>
+      <span class="label">포즈 변경</span>
+    </div>
+    <div class="menu-btn" onclick="openPanel('expression')">
+      <span class="icon">😊</span>
+      <span class="label">표정 변경</span>
+    </div>
+    <div class="menu-btn" onclick="openPanel('background')">
+      <span class="icon">🌅</span>
+      <span class="label">배경 바꾸기</span>
+    </div>
+    <div class="menu-btn" onclick="openPanel('style')">
+      <span class="icon">✨</span>
+      <span class="label">스타일 변경</span>
+    </div>
+  </div>
+
+  <!-- ======================== PANEL: 프로필 사진 만들기 ======================== -->
+  <div class="panel" id="panel-profile">
+    <div class="panel-title">🪄 프로필 사진 만들기 — 컨셉 선택</div>
+
+    <div style="display:flex;align-items:flex-start;gap:14px;background:rgba(92,240,252,0.06);border:1px solid rgba(92,240,252,0.2);border-radius:14px;padding:16px 20px;margin-bottom:24px;">
+      <span style="font-size:28px;flex-shrink:0;">📸</span>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#5cf0fc;margin-bottom:6px;letter-spacing:0.5px;">사용 방법 — 내 사진으로 만들기</div>
+        <div style="font-size:12.5px;color:rgba(240,240,248,0.7);line-height:1.7;">
+          아래에서 원하는 컨셉을 선택 → 프롬프트 복사<br>
+          <strong style="color:#fff;">ChatGPT(GPT-4o) 또는 Claude</strong>에서<br>
+          <strong style="color:#fcd97c;">① 내 사진 첨부</strong> + <strong style="color:#fcd97c;">② 프롬프트 붙여넣기</strong> → 완성!
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-title">직업 / 분위기 컨셉</div>
+    <div class="option-grid">
+      <div class="option-chip" onclick="selectOption(this, 'profile', 'corporate')">💼 전문직·비즈니스</div>
+      <div class="option-chip" onclick="selectOption(this, 'profile', 'creative')">🎨 크리에이티브</div>
+      <div class="option-chip" onclick="selectOption(this, 'profile', 'casual')">😎 캐주얼·친근한</div>
+      <div class="option-chip" onclick="selectOption(this, 'profile', 'luxury')">👑 럭셔리·고급스러운</div>
+      <div class="option-chip" onclick="selectOption(this, 'profile', 'academic')">📚 학술·지성적</div>
+      <div class="option-chip" onclick="selectOption(this, 'profile', 'sporty')">🏃 스포티·활동적</div>
+      <div class="option-chip" onclick="selectOption(this, 'profile', 'artistic')">🖼 아티스틱·감성적</div>
+      <div class="option-chip" onclick="selectOption(this, 'profile', 'tech')">💻 테크·미래적</div>
+    </div>
+
+    <div class="custom-input-area">
+      <input class="custom-input" id="custom-profile" placeholder="원하는 컨셉을 직접 입력하세요 (예: 친환경 브랜드 창업자)">
+      <button class="apply-btn" onclick="applyCustom('profile')">생성</button>
+    </div>
+
+    <div class="prompt-result" id="result-profile">
+      <div class="prompt-label">📋 복사해서 바로 사용하세요</div>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt('result-profile')">복사</button>
+        <div class="prompt-text" id="text-profile"></div>
+      </div>
+      <div class="tip-box" id="tip-profile"></div>
+    </div>
+  </div>
+
+  <!-- ======================== PANEL: 포즈 ======================== -->
+  <div class="panel" id="panel-pose">
+    <div class="panel-title">🧍 포즈 변경</div>
+
+    <div class="sub-title">포즈 선택</div>
+    <div class="option-grid">
+      <div class="option-chip" onclick="selectOption(this, 'pose', 'straight')">🧍 정면 직립</div>
+      <div class="option-chip" onclick="selectOption(this, 'pose', 'slight_turn')">↩ 약간 옆으로</div>
+      <div class="option-chip" onclick="selectOption(this, 'pose', 'arms_crossed')">🤝 팔짱 끼기</div>
+      <div class="option-chip" onclick="selectOption(this, 'pose', 'relaxed')">🛋 편안하게 기대기</div>
+      <div class="option-chip" onclick="selectOption(this, 'pose', 'walking')">🚶 걷는 포즈</div>
+      <div class="option-chip" onclick="selectOption(this, 'pose', 'seated')">💺 앉은 자세</div>
+      <div class="option-chip" onclick="selectOption(this, 'pose', 'hand_chin')">🤔 턱 괴기</div>
+      <div class="option-chip" onclick="selectOption(this, 'pose', 'dynamic')">💪 다이나믹 포즈</div>
+    </div>
+
+    <div class="custom-input-area">
+      <input class="custom-input" id="custom-pose" placeholder="원하는 포즈를 직접 입력하세요 (예: 노트북을 들고 있는 포즈)">
+      <button class="apply-btn" onclick="applyCustom('pose')">생성</button>
+    </div>
+
+    <div class="prompt-result" id="result-pose">
+      <div class="prompt-label">📋 복사해서 바로 사용하세요</div>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt('result-pose')">복사</button>
+        <div class="prompt-text" id="text-pose"></div>
+      </div>
+      <div class="tip-box" id="tip-pose"></div>
+    </div>
+  </div>
+
+  <!-- ======================== PANEL: 표정 ======================== -->
+  <div class="panel" id="panel-expression">
+    <div class="panel-title">😊 표정 변경</div>
+
+    <div class="sub-title">표정 선택</div>
+    <div class="option-grid">
+      <div class="option-chip" onclick="selectOption(this, 'expression', 'confident')">😤 자신감 있는</div>
+      <div class="option-chip" onclick="selectOption(this, 'expression', 'warm_smile')">😊 따뜻한 미소</div>
+      <div class="option-chip" onclick="selectOption(this, 'expression', 'serious')">😐 진지한·차분한</div>
+      <div class="option-chip" onclick="selectOption(this, 'expression', 'bright')">😁 밝고 활발한</div>
+      <div class="option-chip" onclick="selectOption(this, 'expression', 'mysterious')">😏 신비롭고 차가운</div>
+      <div class="option-chip" onclick="selectOption(this, 'expression', 'soft')">🥰 부드럽고 온화한</div>
+      <div class="option-chip" onclick="selectOption(this, 'expression', 'powerful')">😠 강인하고 카리스마</div>
+      <div class="option-chip" onclick="selectOption(this, 'expression', 'natural')">🙂 자연스러운 편안함</div>
+    </div>
+
+    <div class="custom-input-area">
+      <input class="custom-input" id="custom-expression" placeholder="원하는 표정을 직접 입력하세요 (예: 살짝 놀란 듯한 생기있는 표정)">
+      <button class="apply-btn" onclick="applyCustom('expression')">생성</button>
+    </div>
+
+    <div class="prompt-result" id="result-expression">
+      <div class="prompt-label">📋 복사해서 바로 사용하세요</div>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt('result-expression')">복사</button>
+        <div class="prompt-text" id="text-expression"></div>
+      </div>
+      <div class="tip-box" id="tip-expression"></div>
+    </div>
+  </div>
+
+  <!-- ======================== PANEL: 배경 ======================== -->
+  <div class="panel" id="panel-background">
+    <div class="panel-title">🌅 배경 바꾸기</div>
+
+    <div class="sub-title">배경 선택</div>
+    <div class="option-grid">
+      <div class="option-chip" onclick="selectOption(this, 'background', 'clean_white')">⬜ 깔끔한 흰 배경</div>
+      <div class="option-chip" onclick="selectOption(this, 'background', 'gradient')">🌈 그라데이션</div>
+      <div class="option-chip" onclick="selectOption(this, 'background', 'office')">🏢 오피스·도시 뷰</div>
+      <div class="option-chip" onclick="selectOption(this, 'background', 'nature')">🌿 자연·숲·공원</div>
+      <div class="option-chip" onclick="selectOption(this, 'background', 'cafe')">☕ 카페·인테리어</div>
+      <div class="option-chip" onclick="selectOption(this, 'background', 'bokeh')">🔵 아웃포커스 보케</div>
+      <div class="option-chip" onclick="selectOption(this, 'background', 'studio')">💡 스튜디오 조명</div>
+      <div class="option-chip" onclick="selectOption(this, 'background', 'night_city')">🌃 야경·네온</div>
+    </div>
+
+    <div class="custom-input-area">
+      <input class="custom-input" id="custom-background" placeholder="원하는 배경을 직접 입력하세요 (예: 제주도 바다가 보이는 테라스)">
+      <button class="apply-btn" onclick="applyCustom('background')">생성</button>
+    </div>
+
+    <div class="prompt-result" id="result-background">
+      <div class="prompt-label">📋 복사해서 바로 사용하세요</div>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt('result-background')">복사</button>
+        <div class="prompt-text" id="text-background"></div>
+      </div>
+      <div class="tip-box" id="tip-background"></div>
+    </div>
+  </div>
+
+  <!-- ======================== PANEL: 스타일 ======================== -->
+  <div class="panel" id="panel-style">
+    <div class="panel-title">✨ 스타일 변경</div>
+
+    <div class="sub-title">이미지 스타일 선택</div>
+    <div class="option-grid">
+      <div class="option-chip" onclick="selectOption(this, 'style', 'realistic')">📸 실사·사진 같은</div>
+      <div class="option-chip" onclick="selectOption(this, 'style', 'cinematic')">🎬 시네마틱·영화 같은</div>
+      <div class="option-chip" onclick="selectOption(this, 'style', 'anime')">🎌 애니메이션풍</div>
+      <div class="option-chip" onclick="selectOption(this, 'style', 'illustration')">🖌 일러스트·그림체</div>
+      <div class="option-chip" onclick="selectOption(this, 'style', 'vintage')">📷 빈티지·필름</div>
+      <div class="option-chip" onclick="selectOption(this, 'style', '3d')">🧊 3D 렌더링</div>
+      <div class="option-chip" onclick="selectOption(this, 'style', 'minimal')">◻ 미니멀·모던</div>
+      <div class="option-chip" onclick="selectOption(this, 'style', 'fantasy')">🔮 판타지·몽환적</div>
+    </div>
+
+    <div class="custom-input-area">
+      <input class="custom-input" id="custom-style" placeholder="원하는 스타일을 직접 입력하세요 (예: 수채화 느낌의 따뜻한 톤)">
+      <button class="apply-btn" onclick="applyCustom('style')">생성</button>
+    </div>
+
+    <div class="prompt-result" id="result-style">
+      <div class="prompt-label">📋 복사해서 바로 사용하세요</div>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt('result-style')">복사</button>
+        <div class="prompt-text" id="text-style"></div>
+      </div>
+      <div class="tip-box" id="tip-style"></div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+const PROMPTS = {
+  profile: {
+    corporate:   { prompt: `Using the attached photo as the reference for the person's face and appearance,\ncreate a professional headshot portrait.\n\nKeep the person's face, skin tone, and features exactly as shown in the photo.\nChange the outfit to: a sharp business suit or blazer.\nExpression: confident and approachable.\nBackground: clean modern office with soft bokeh.\nLighting: studio lighting, sharp focus on face.\nStyle: photorealistic, high resolution, LinkedIn profile quality.`, tip: `💡 <strong>사용법:</strong> 이 프롬프트를 복사한 뒤, <strong>본인 사진과 함께</strong> ChatGPT(GPT-4o) 또는 Claude에 붙여넣으세요. "wearing a" 뒤에 원하는 복장을 변경할 수 있습니다.` },
+    creative:    { prompt: `Using the attached photo as the reference for the person's face and appearance,\ncreate a creative professional portrait.\n\nKeep the person's face, skin tone, and features exactly as shown in the photo.\nChange the outfit to: colorful, artistic or expressive clothing.\nExpression: warm and expressive smile, confident body language.\nBackground: artistic studio with subtle paint textures or abstract elements.\nLighting: soft natural lighting, editorial photography style.\nStyle: vibrant yet professional, high detail.`, tip: `💡 <strong>사용법:</strong> 이 프롬프트를 복사한 뒤, <strong>본인 사진과 함께</strong> ChatGPT(GPT-4o) 또는 Claude에 붙여넣으세요. 배경에 "colorful geometric shapes"를 추가해 보세요.` },
+    casual:      { prompt: `Using the attached photo as the reference for the person's face and appearance,\ncreate a casual and friendly portrait photo.\n\nKeep the person's face, skin tone, and features exactly as shown in the photo.\nChange the outfit to: relaxed everyday casual clothing.\nExpression: natural bright smile, approachable vibe.\nBackground: outdoor environment — park, cafe terrace, or urban street.\nLighting: golden hour, warm and natural.\nStyle: high quality DSLR photo, warm color grading, candid feel.`, tip: `💡 <strong>사용법:</strong> 이 프롬프트를 복사한 뒤, <strong>본인 사진과 함께</strong> ChatGPT(GPT-4o) 또는 Claude에 붙여넣으세요. 골든아워 조명이 피부톤을 따뜻하게 만들어줍니다.` },
+    luxury:      { prompt: `Using the attached photo as the reference for the person's face and appearance,\ncreate a high-end luxury portrait.\n\nKeep the person's face, skin tone, and features exactly as shown in the photo.\nChange the outfit to: elegant designer clothing, refined and sophisticated.\nExpression: poised and composed, refined confidence.\nBackground: upscale interior — marble walls, gold accents, or penthouse view.\nLighting: moody dramatic lighting, editorial fashion style.\nStyle: cinematic color grading, ultra sharp, Vogue-quality editorial.`, tip: `💡 <strong>사용법:</strong> 이 프롬프트를 복사한 뒤, <strong>본인 사진과 함께</strong> ChatGPT(GPT-4o) 또는 Claude에 붙여넣으세요. "Harper's Bazaar style"을 추가하면 퀄리티가 올라갑니다.` },
+    academic:    { prompt: `Using the attached photo as the reference for the person's face and appearance,\ncreate an intellectual academic portrait.\n\nKeep the person's face, skin tone, and features exactly as shown in the photo.\nChange the outfit to: smart casual or formal academic attire.\nExpression: thoughtful and focused, intelligent presence.\nBackground: university library with bookshelves in warm bokeh.\nLighting: warm library lighting, professional photography.\nStyle: sharp and clean, authoritative and trustworthy feel.`, tip: `💡 <strong>사용법:</strong> 이 프롬프트를 복사한 뒤, <strong>본인 사진과 함께</strong> ChatGPT(GPT-4o) 또는 Claude에 붙여넣으세요. "glasses" 또는 "holding a book"을 추가해보세요.` },
+    sporty:      { prompt: `Using the attached photo as the reference for the person's face and appearance,\ncreate a dynamic sporty portrait.\n\nKeep the person's face, skin tone, and features exactly as shown in the photo.\nChange the outfit to: athletic wear or sportswear.\nExpression: energetic and determined, focused intensity.\nBackground: sports facility or outdoor athletic setting.\nLighting: dramatic action lighting, motion blur on background.\nStyle: high energy, Nike/Adidas campaign style photography.`, tip: `💡 <strong>사용법:</strong> 이 프롬프트를 복사한 뒤, <strong>본인 사진과 함께</strong> ChatGPT(GPT-4o) 또는 Claude에 붙여넣으세요. "mid-motion action shot"을 추가하면 더 역동적입니다.` },
+    artistic:    { prompt: `Using the attached photo as the reference for the person's face and appearance,\ncreate an artistic and emotive portrait.\n\nKeep the person's face, skin tone, and features exactly as shown in the photo.\nChange the outfit to: expressive, creative clothing or artistic accessories.\nExpression: dreamy and soulful, emotionally evocative.\nBackground: artistic bokeh — soft lights, abstract textures.\nLighting: film photography feel, slight grain, warm tones.\nStyle: creative editorial, analog film aesthetic, evocative mood lighting.`, tip: `💡 <strong>사용법:</strong> 이 프롬프트를 복사한 뒤, <strong>본인 사진과 함께</strong> ChatGPT(GPT-4o) 또는 Claude에 붙여넣으세요. "Kodak Portra 400 film" 필름명 추가 추천.` },
+    tech:        { prompt: `Using the attached photo as the reference for the person's face and appearance,\ncreate a futuristic tech professional portrait.\n\nKeep the person's face, skin tone, and features exactly as shown in the photo.\nChange the outfit to: modern minimalist outfit, dark tones, tech aesthetic.\nExpression: focused and innovative, forward-thinking.\nBackground: tech-themed — server room, neon lights, or holographic UI elements.\nLighting: cool-toned cinematic lighting, cyberpunk-lite aesthetic.\nStyle: ultra-sharp, high-tech startup campaign style.`, tip: `💡 <strong>사용법:</strong> 이 프롬프트를 복사한 뒤, <strong>본인 사진과 함께</strong> ChatGPT(GPT-4o) 또는 Claude에 붙여넣으세요. "holographic HUD overlay"를 추가해보세요.` },
+  },
+  pose: {
+    straight:    { prompt: `Portrait with straight-on frontal pose,\nsubject standing directly facing the camera,\nsymmetric and powerful stance,\nhands at sides or lightly clasped,\nfull posture visible from waist up,\nprofessional lighting, sharp focus`, tip: `💡 <strong>팁:</strong> 가장 무난하고 신뢰감 있는 포즈입니다. 비즈니스 프로필에 최적.` },
+    slight_turn: { prompt: `Portrait with slight 3/4 angle turn,\nsubject's body turned slightly to one side,\nface turned toward camera,\nnatural elegant posture, relaxed shoulders,\nfrom chest/shoulders up framing,\nsoft directional lighting`, tip: `💡 <strong>팁:</strong> 3/4 각도는 얼굴과 몸이 더 입체적으로 보이는 가장 인기 있는 포즈입니다.` },
+    arms_crossed:{ prompt: `Portrait with arms crossed pose,\nconfident crossed arms stance,\nstraight posture, direct eye contact with camera,\napproachable yet authoritative energy,\nwaist-up framing,\neven studio lighting`, tip: `💡 <strong>팁:</strong> 팔짱은 자신감 있어 보이지만 너무 굳으면 폐쇄적으로 보일 수 있으니 "slight smile"을 추가하세요.` },
+    relaxed:     { prompt: `Relaxed leaning portrait,\nsubject leaning casually against wall or desk,\none hand in pocket or resting on surface,\nrelaxed confident vibe, slight smile,\nenvironmental portrait feel,\nnatural soft lighting`, tip: `💡 <strong>팁:</strong> "leaning against a glass wall" 또는 "leaning on a wooden desk"처럼 기대는 대상을 구체화해보세요.` },
+    walking:     { prompt: `Dynamic walking portrait,\nsubject caught mid-stride walking toward camera,\nnatural confident gait, movement and energy,\nurban street or corridor background with motion blur,\ncandid photography style,\ndramatic perspective`, tip: `💡 <strong>팁:</strong> "slow shutter speed effect" 또는 "motion blur background"를 추가하면 역동적인 느낌이 납니다.` },
+    seated:      { prompt: `Seated portrait pose,\nsubject sitting naturally in chair or on steps,\nleaning slightly forward — engaged and approachable,\nhands folded or resting on knees,\nwaist-up or full seated framing,\nwarm natural lighting`, tip: `💡 <strong>팁:</strong> 앉은 포즈는 CEO나 전문가 인터뷰 느낌을 줍니다. "leather chair" 또는 "modern sofa"를 지정해보세요.` },
+    hand_chin:   { prompt: `Thoughtful chin-resting pose,\nsubject resting chin or cheek on hand,\ncontemplative or playful expression,\nslight tilt of the head,\nclose-up or half-body framing,\nsoft warm lighting, intimate mood`, tip: `💡 <strong>팁:</strong> 지적이고 사려깊은 인상을 줍니다. 교육자, 작가, 상담가 프로필에 잘 어울립니다.` },
+    dynamic:     { prompt: `Dynamic energetic portrait pose,\nbold asymmetric body stance,\none arm raised or dramatic hand gesture,\nhigh energy expressive attitude,\nlow angle dramatic perspective,\ncontrast lighting — cinematic shadows`, tip: `💡 <strong>팁:</strong> "low angle shot" (아래에서 위로 촬영)을 추가하면 더 강렬하고 웅장한 느낌이 납니다.` },
+  },
+  expression: {
+    confident:   { prompt: `Portrait with confident expression,\ndirect eye contact with camera, slight chin lift,\nfirm jaw, composed and self-assured look,\nneutral to slight determined smile,\nstrong and trustworthy presence,\nsharp professional photography`, tip: `💡 <strong>팁:</strong> "direct gaze" + "slightly raised chin" 조합이 자신감 있는 표정의 핵심입니다.` },
+    warm_smile:  { prompt: `Portrait with warm genuine smile,\nbright natural smile showing slight teeth,\nkind and welcoming eyes — Duchenne smile,\nwarm approachable energy,\nlifted cheeks, soft crinkle around eyes,\nnatural lighting to enhance warmth`, tip: `💡 <strong>팁:</strong> "Duchenne smile" (눈까지 웃는 진짜 미소)를 명시하면 어색하지 않은 미소가 생성됩니다.` },
+    serious:     { prompt: `Portrait with serious and composed expression,\nneutral firm expression, no smile,\ncalm focused eyes, composed facial muscles,\ncontrolled and authoritative presence,\nprofessional restraint,\ndramatic directional lighting to emphasize structure`, tip: `💡 <strong>팁:</strong> "stoic expression" 또는 "poker face"를 추가하면 더 강렬한 차분함이 표현됩니다.` },
+    bright:      { prompt: `Portrait with bright cheerful expression,\nbig radiant smile, full of energy,\nexpressive joyful eyes, lifted eyebrows,\nvibrant and positive mood,\nlit-up face, enthusiasm and warmth,\nbright natural light to complement the energy`, tip: `💡 <strong>팁:</strong> "laughing candid moment"을 추가하면 더 자연스럽고 생동감 있는 표정이 됩니다.` },
+    mysterious:  { prompt: `Portrait with mysterious cool expression,\nslightly narrowed eyes, subtle smirk,\ncalculated and aloof gaze, composed coolness,\nminimal expression with maximum intensity,\nmysterious and captivating presence,\nmoody low-key lighting, deep shadows`, tip: `💡 <strong>팁:</strong> "Rembrandt lighting" (한쪽에서 오는 강한 조명)을 추가하면 신비로운 분위기가 극대화됩니다.` },
+    soft:        { prompt: `Portrait with soft gentle expression,\ncalm tender eyes, peaceful soft smile,\nwarm nurturing energy, gentle demeanor,\nrelaxed facial muscles, serene presence,\nkind and empathetic aura,\nsoft diffused flattering lighting`, tip: `💡 <strong>팁:</strong> "soft focus" 또는 "diffused light" 조명 설명을 추가하면 더 부드럽고 온화한 분위기가 됩니다.` },
+    powerful:    { prompt: `Portrait with powerful charismatic expression,\nstrong determined gaze, fierce intensity,\njaw set firmly, controlled power,\ndominant and magnetic presence,\nchalenging direct eye contact,\ndramatic chiaroscuro lighting — strong contrast`, tip: `💡 <strong>팁:</strong> "chiaroscuro lighting" (극적인 명암 대비)을 명시하면 카리스마가 극적으로 강조됩니다.` },
+    natural:     { prompt: `Portrait with natural relaxed expression,\ncomfortable authentic look, at ease,\nslightly relaxed lips — hint of gentle smile,\nsoft unfocused casual eyes,\neasygoing approachable presence,\nnatural ambient light, candid feel`, tip: `💡 <strong>팁:</strong> "candid moment" 또는 "caught off guard naturally"를 추가하면 연출되지 않은 자연스러운 표정이 됩니다.` },
+  },
+  background: {
+    clean_white: { prompt: `Simple clean white background portrait,\npure white or off-white seamless backdrop,\neven soft studio lighting, no shadows on background,\nsubject perfectly separated from background,\nprofessional headshot style,\nhigh key photography, crisp and clean`, tip: `💡 <strong>팁:</strong> 흰 배경은 LinkedIn, 명함, 이력서 등 공식 용도에 가장 적합합니다.` },
+    gradient:    { prompt: `Smooth gradient background portrait,\nsoft gradient from [light blue to white / purple to pink],\nno distracting elements, pure color atmosphere,\nsubject in clear focus against gradient,\nmodern and clean aesthetic,\nstudio portrait lighting`, tip: `💡 <strong>팁:</strong> 대괄호 안에 원하는 색상 조합을 넣어보세요. 예: "from coral to gold" 또는 "from teal to navy"` },
+    office:      { prompt: `Modern office background portrait,\ncontemporary corporate office interior — glass walls, city skyline visible,\nblurred background (shallow depth of field),\nnatural window light + ambient office lighting,\nprofessional and aspirational atmosphere,\nsharp subject, soft background bokeh`, tip: `💡 <strong>팁:</strong> "city skyline through floor-to-ceiling windows"를 추가하면 고급스러운 도심 오피스 느낌이 납니다.` },
+    nature:      { prompt: `Natural outdoor portrait background,\nlush green forest / blooming park / golden field,\nbeautiful natural bokeh background,\ndappled sunlight through trees,\nfresh and organic atmosphere,\nnatural light photography, warm color tones`, tip: `💡 <strong>팁:</strong> 계절을 지정해보세요. "autumn leaves" (가을), "cherry blossoms" (봄), "snow-covered" (겨울).` },
+    cafe:        { prompt: `Cozy cafe interior background,\nwarm cafe ambiance — exposed brick, wooden furniture, soft lights,\nbokeh of people and cafe elements,\nwarm golden ambient lighting,\nrelaxed and creative atmosphere,\nlifestyle photography, film-like warm grading`, tip: `💡 <strong>팁:</strong> "Scandinavian minimalist cafe" 또는 "vintage Parisian bistro" 등 구체적인 카페 스타일을 명시해보세요.` },
+    bokeh:       { prompt: `Beautiful bokeh background portrait,\ncircular light bokeh dots in background,\n[warm golden / cool blue / colorful] light orbs,\ncompletely blurred background, maximum subject separation,\nshallow depth of field — f/1.4 lens effect,\ncinematic portrait photography`, tip: `💡 <strong>팁:</strong> 보케 색상을 구체적으로 명시하세요. "warm Christmas lights bokeh" 또는 "neon city lights bokeh".` },
+    studio:      { prompt: `Professional studio lighting portrait,\nneutral gray or dark studio background,\ndramatic studio lighting setup — key light, fill light, rim light,\nhigh-end photography studio feel,\nbold shadows and highlights,\ncommercial portrait photography, magazine quality`, tip: `💡 <strong>팁:</strong> "three-point lighting setup" 또는 "Rembrandt studio lighting"을 추가하면 더 전문적인 스튜디오 느낌이 납니다.` },
+    night_city:  { prompt: `Night city neon background portrait,\nurban night scene with neon signs and city lights,\nrainy street reflections, bokeh of city lights,\ncolorful neon — pink, blue, purple ambient glow,\ncyberpunk-influenced color palette,\ncollection light on subject from neon sources`, tip: `💡 <strong>팁:</strong> "Tokyo Shinjuku neon district" 또는 "Times Square New York night"처럼 도시명을 지정하면 더 구체적인 분위기가 됩니다.` },
+  },
+  style: {
+    realistic:   { prompt: `Hyper-realistic photographic portrait,\ncaptured with a professional camera — Sony A7R or Canon 5D,\n85mm portrait lens, f/1.8 aperture,\nnatural skin texture, pores and details visible,\nphotorealistic rendering, true-to-life colors,\nno AI artifacts, indistinguishable from real photography`, tip: `💡 <strong>팁:</strong> 카메라 기종과 렌즈를 명시하면 사진 같은 느낌이 크게 향상됩니다. "Hasselblad medium format" 최고급.` },
+    cinematic:   { prompt: `Cinematic movie still portrait,\nwidescreen cinematic framing,\ndramatic color grading — teal and orange LUT,\nfilm grain overlay, anamorphic lens flare,\nnarrative storytelling mood,\nHollywood blockbuster visual quality,\nshallow depth of field, epic atmosphere`, tip: `💡 <strong>팁:</strong> "teal and orange color grading" (청록+오렌지)는 헐리우드 영화의 대표적인 색보정 스타일입니다.` },
+    anime:       { prompt: `Anime style portrait illustration,\nhigh-quality Japanese animation art style,\nlarge expressive eyes, clean line art,\nbeautiful cel shading and smooth gradients,\ndetailed hair with individual strand highlights,\nsoft pastel skin tones,\nStudio Ghibli / Makoto Shinkai quality aesthetic`, tip: `💡 <strong>팁:</strong> 스튜디오를 지정해보세요: "Studio Ghibli style" (따뜻함), "Your Name aesthetic" (감성적), "Demon Slayer style" (강렬함).` },
+    illustration:{ prompt: `Digital illustration portrait style,\nartistic hand-crafted illustration quality,\nbrush stroke texture visible, painterly feel,\nwarm color palette with artistic interpretation,\ncharacter illustration for editorial use,\ndetailed and expressive artistic rendering`, tip: `💡 <strong>팁:</strong> "watercolor style" (수채화), "gouache painting" (구아슈), "charcoal sketch" (목탄화)로 재질감을 지정해보세요.` },
+    vintage:     { prompt: `Vintage film photography portrait,\nanalogue film emulation — Kodak Portra 400 / Fuji Pro 400H,\nfilm grain, slight color fade, light leak effects,\nwarm faded tones, muted saturation,\n1970s-1980s photography aesthetic,\norganic imperfections, timeless nostalgic feel`, tip: `💡 <strong>팁:</strong> 구체적인 필름 종류를 명시하면 더 정확한 색감이 나옵니다. "Kodak Portra" (따뜻함), "Fuji Velvia" (선명함).` },
+    '3d':        { prompt: `3D rendered portrait character,\nhigh-quality CGI rendering — Unreal Engine / Octane Render quality,\nsubsurface scattering skin shader, photorealistic materials,\ndetailed facial geometry, physically-based rendering (PBR),\ncinematic 3D lighting setup,\nPixar/ILM visual effects quality`, tip: `💡 <strong>팁:</strong> "ZBrush sculpt quality" 또는 "Unreal Engine 5 MetaHuman"을 추가하면 더 정교한 3D 퀄리티가 됩니다.` },
+    minimal:     { prompt: `Minimalist modern portrait style,\nclean restrained aesthetic, essential elements only,\nlimited color palette — [monochrome / pastel / earth tones],\nlots of negative space around subject,\ngeometric composition, Swiss design influence,\npure and elegant, nothing unnecessary`, tip: `💡 <strong>팁:</strong> "Swiss design" 또는 "Bauhaus aesthetic"을 추가하면 현대적이고 세련된 미니멀 스타일이 됩니다.` },
+    fantasy:     { prompt: `Fantasy ethereal portrait style,\ndreamy magical atmosphere, otherworldly beauty,\nsoft glowing light, magical particles / sparkles,\nsurreal color palette — iridescent, ethereal pastels,\nfairy tale aesthetic, mystical and enchanting,\nhigh fantasy illustration quality, luminous and otherworldly`, tip: `💡 <strong>팁:</strong> "bioluminescent" (생물발광), "aurora borealis colors"를 추가하면 더 몽환적이고 신비로운 분위기가 됩니다.` },
+  }
+};
+
+let currentPanel = null;
+
+function openPanel(type) {
+  // Close all panels
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+
+  // Open selected
+  document.getElementById('panel-' + type).classList.add('active');
+  event.currentTarget.classList.add('active');
+  currentPanel = type;
+
+  // Scroll to panel
+  setTimeout(() => {
+    document.getElementById('panel-' + type).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 100);
+}
+
+function selectOption(el, type, key) {
+  // Deselect siblings
+  el.closest('.option-grid').querySelectorAll('.option-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+
+  const data = PROMPTS[type][key];
+  showPrompt(type, data.prompt, data.tip);
+}
+
+function applyCustom(type) {
+  const val = document.getElementById('custom-' + type).value.trim();
+  if (!val) return;
+
+  const customPrompts = {
+    profile:    `A professional portrait photo of a person,\n[${val}] concept and theme,\nappropriate outfit and styling for the concept,\nmatching background that complements the theme,\nprofessional photography quality, high resolution`,
+    pose:       `Portrait with [${val}] pose,\nnatural and comfortable body language,\npose emphasizing: ${val},\nfull intention and clarity in the gesture,\ncinematic composition, sharp focus on subject`,
+    expression: `Portrait with [${val}] expression,\nfacial expression communicating: ${val},\nnatural and authentic — not forced or fake,\neyes reflecting the intended emotion,\nperfect lighting to enhance the expression`,
+    background: `Portrait with [${val}] background,\nbackground environment: ${val},\nbeautiful background detail and depth,\nsubject sharply separated via depth of field,\nphotographic quality, perfect balance between subject and background`,
+    style:      `Portrait in [${val}] style,\nartistic style: ${val},\nexecuted with expert skill and detail,\nconsistent aesthetic treatment throughout,\nhigh quality and professional finish`,
+  };
+
+  showPrompt(type, customPrompts[type],
+    `💡 <strong>직접 입력 팁:</strong> 더 자세하게 입력할수록 원하는 결과를 얻을 수 있습니다. 영어로 입력하면 더 정확한 결과가 나옵니다.`
+  );
+
+  // Deselect chips
+  document.querySelectorAll(`#panel-${type} .option-chip`).forEach(c => c.classList.remove('selected'));
+}
+
+function showPrompt(type, promptText, tipHtml) {
+  const result = document.getElementById('result-' + type);
+  const textEl  = document.getElementById('text-' + type);
+  const tipEl   = document.getElementById('tip-' + type);
+
+  textEl.textContent = promptText;
+  tipEl.innerHTML   = tipHtml;
+
+  result.classList.add('visible');
+  setTimeout(() => {
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 100);
+
+  // Reset copy button
+  const btn = result.querySelector('.copy-btn');
+  btn.textContent = '복사';
+  btn.classList.remove('copied');
+}
+
+function copyPrompt(resultId) {
+  const textEl = document.getElementById(resultId).querySelector('.prompt-text');
+  const btn    = document.getElementById(resultId).querySelector('.copy-btn');
+  const text   = textEl.innerText || textEl.textContent;
+
+  function onSuccess() {
+    btn.textContent = '✓ 복사됨!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '복사';
+      btn.classList.remove('copied');
+    }, 2500);
+  }
+
+  function onFail() {
+    // Final fallback: select text so user can manually Ctrl+C
+    const range = document.createRange();
+    range.selectNodeContents(textEl);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    btn.textContent = '드래그됨 — Ctrl+C';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '복사';
+      btn.classList.remove('copied');
+      sel.removeAllRanges();
+    }, 3000);
+  }
+
+  // Method 1: Modern Clipboard API
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(onSuccess).catch(() => {
+      // Method 2: execCommand fallback
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        ok ? onSuccess() : onFail();
+      } catch(e) { onFail(); }
+    });
+  } else {
+    // Method 2 directly
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      ok ? onSuccess() : onFail();
+    } catch(e) { onFail(); }
+  }
+}
+</script>
+</body>
+</html>
