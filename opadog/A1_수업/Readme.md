@@ -37,7 +37,7 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [강의자료2]: https://drive.google.com/file/d/1r_K63nQudVvJc2fv_L-I4tLYMyHgk1n5/view?usp=drive_link
 [강의자료3]: https://drive.google.com/file/d/1F57m-LFPskZeVa6GWb0EFHyiI9f6_00h/view?usp=drive_link
 [강의자료4]: https://drive.google.com/file/d/1jLSu1BBcZfhLIoNlsS0_z167laowYZEF/view?usp=drive_link
-[강의자료5]: pdf
+[강의자료5]: https://drive.google.com/file/d/1tOQ1JdGCAVyBHj5YbF4PxuM_qfJeyZrS/view?usp=drive_link
 [강의자료6]: pdf
 [강의자료7]: pdf
 
@@ -47,7 +47,7 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [1주차특강]: https://www.youtube.com/watch?v=RjUa2WqnvZg
 [2주차강의]: https://youtu.be/dOjaM9dC5bw
 [2주차특강]: https://youtu.be/H8vpH-mFml8
-[3주차강의]: https://youtu.be/
+[3주차강의]: https://youtu.be/9SM9Vx0Cc8E
 [3주차특강]: https://youtu.be/
 [4주차강의]: https://youtu.be/
 
