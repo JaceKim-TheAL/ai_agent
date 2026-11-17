@@ -92,30 +92,17 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 1주차 | - | 웜업      | [자료실][혜택_1주차]
 🟥 | [혜택 4]   | 최신 바이럴 콘텐츠 숏폼 레퍼런스 모음 100종                  | 💻[[PDF자료]][혜택_4]
 🟥 | [혜택 15]  | 2026년 최신 AI 툴 선별 모음집 50종                         | 💻[[PDF자료]][혜택_15]
-🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-이미지)         | 💻[[PDF자료]][혜택_2-1]
-🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-html)          | 💻[[PDF자료]][혜택_2-1]
+🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-이미지)         | 💻[[PDF자료]][혜택_2-1(imgs)]
+🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (Gems)               | 💻[[PDF자료]][혜택_2-1(Gems)]
+🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-html)          | 💻[[PDF자료]][혜택_2-1(html)]
 🟥 | [혜택 2-2] | 오파독 스킬팩 - AI 원페이지 숏폼 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-2(Gems)]
 🟥 | [혜택 2-2] | 오파독 스킬팩 - AI 원페이지 숏폼 확장 패키지 (GPTs)           | 💻[[PDF자료]][혜택_2-2(GPTs)]
-🟥 | [혜택 2-3] | 오파독 스킬팩 - AI 광고소재 제작 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-3]
 🟥 | [혜택 2-3] | 오파독 스킬팩 - AI 광고소재 제작 확장 패키지 (GPTs)           | 💻[[PDF자료]][혜택_2-3]
-🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (Gems)               | 💻[[PDF자료]][혜택_2-1]
-
-[혜택_1주차]: https://drive.google.com/drive/folders/1zMS18vI2uZHLbHAws9rdDYN1obvbWF4B?usp=drive_link
-[혜택_4]:   https://drive.google.com/file/d/1XQh34manisQZihHxgeAKc46Fon2DEziv/view?usp=drive_link
-[혜택_15 ]: https://drive.google.com/file/d/1q4AGsgCjEte3nsoESLC93qMR2jC6xgfM/view?usp=drive_link
-
-[혜택 2-1(Gems)]: https://drive.google.com/file/d/1JAG1Y0Vv50i7AQmjuACP3XsSd7vffGp0/view?usp=drive_link 
-[혜택_2-1(GPTs)]: https://drive.google.com/file/d/10rotguh7Ndd2s0ObBVvM1UJq4J6W8RMw/view?usp=drive_link
-[혜택_2-2]: 링크
-[혜택_2-2]: 링크
-[혜택_2-3]: 링크
-[혜택_2-3]: 링크
-[혜택_2-1]: 링크
-
+🟥 | [혜택 2-3] | 오파독 스킬팩 - AI 광고소재 제작 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-3]
 2주 | |        | [자료실][혜택_2주차]
-🟧 | [혜택 21] | 오파독 최적화 디자인 툴 노하우                                      | 💻[[PDF자료]][혜택_21]
-🟧 | [혜택 11] | 오파독 콘텐츠 캘린더 관리 노션 템플릿                             | 💻[[PDF자료]][혜택_11]
-🟧 | [혜택 17] | 오파독 전용 후킹 문구 생성 AI 프로그램                            | 💻[[PDF자료]][혜택_17]
+🟧 | [혜택 11] | 오파독 콘텐츠 캘린더 관리 노션 템플릿                          | 💻[[PDF자료]][혜택_11]
+🟧 | [혜택 17] | 오파독 전용 후킹 문구 생성 AI 프로그램                         | 💻[[PDF자료]][혜택_17]
+🟧 | [혜택 21] | 오파독 최적화 디자인 툴 노하우                                | 💻[[PDF자료]][혜택_21]
 3주 | |        | [자료실][혜택_3주차]
 🟩 | [혜택 16] | 파트너 외주사 최적화 선별 체크리스트                              | 💻[[PDF자료]][혜택_16]
 🟩 | [혜택 5]  | 수익화 성공률 300% UP AI 세일즈봇 & 가이드북                   | 💻[[PDF자료]][혜택_5]
@@ -138,10 +125,20 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 🚀 | [프리미엄 VOD] | 오파독 AI 광고 제안서 생성기 사용 가이드 VOD            | 💻[[PDF자료]][프리미엄_VOD]
 
 
+[혜택_1주차]: https://drive.google.com/drive/folders/1zMS18vI2uZHLbHAws9rdDYN1obvbWF4B?usp=drive_link
+[혜택_4]:   https://drive.google.com/file/d/1XQh34manisQZihHxgeAKc46Fon2DEziv/view?usp=drive_link
+[혜택_15 ]: https://drive.google.com/file/d/1q4AGsgCjEte3nsoESLC93qMR2jC6xgfM/view?usp=drive_link
+[혜택_2-1(imgs)]: https://drive.google.com/file/d/10rotguh7Ndd2s0ObBVvM1UJq4J6W8RMw/view?usp=drive_link
+[혜택_2-1(Gems)]: https://drive.google.com/file/d/1JAG1Y0Vv50i7AQmjuACP3XsSd7vffGp0/view?usp=drive_link
+[혜택_2-1(html)]: https://drive.google.com/file/d/1Eu6MroQC3IJI1Z2ESbwgHEZlbQ5KtSyl/view?usp=drive_link
+[혜택_2-2(GPTs)]: https://drive.google.com/file/d/1aTsRpju0XWd7dmOR7cKTfC1vly7hXk00/view?usp=drive_link
+[혜택 2-2(Gems)]: https://drive.google.com/file/d/1SYRDgF2F-bLQSisZWaa1WuYCEpjXsKmf/view?usp=drive_link
+[혜택_2-3(GPTs)]: https://drive.google.com/file/d/17a0MammzSwrkuQqX8rGd9UbUzScSVOyH/view?usp=drive_link
+[혜택 2-3(Gems)]: https://drive.google.com/file/d/1WwH9tpDU2N4wIhBvW1lI-r-EH_VzcteM/view?usp=drive_link
 [혜택_2주차]: https://drive.google.com/drive/folders/1j6RmBQvVjjri-PaR2jl5mieUJsbq2R6U?usp=drive_link
-[혜택_21]: 링크
-[혜택_11]: 링크
-[혜택_17]: 링크
+[혜택_11]: https://drive.google.com/file/d/1VaDIa0QsGkYAEGuxDwn9IYebTvS8dTP1/view?usp=drive_link
+[혜택_17]: https://drive.google.com/file/d/1NtB_NJoEUvCygEPtIxLBuhvtXMto_0K7/view?usp=drive_link
+[혜택_21]: https://drive.google.com/file/d/1Qn8eTpbaeaH6Hq0f2lOmE_jmIp7Q-WP9/view?usp=drive_link
 [혜택_3주차]: https://drive.google.com/drive/folders/1lONf1RyFW8iPbQWc3G-nl-UxXk_uRQcF?usp=drive_link
 [혜택_16]: 링크
 [혜택_5]: 링크
