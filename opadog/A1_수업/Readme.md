@@ -92,13 +92,13 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 1주차 | - | 웜업      | [자료실][혜택_1주차]
 🟥 | [혜택 4]   | 최신 바이럴 콘텐츠 숏폼 레퍼런스 모음 100종                  | 💻[[PDF자료]][혜택_4]
 🟥 | [혜택 15]  | 2026년 최신 AI 툴 선별 모음집 50종                         | 💻[[PDF자료]][혜택_15]
-🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-이미지)         | 💻[[PDF자료]][혜택_2-1(imgs)]
+🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-이미지)         | 💻[[PDF자료]][혜택_2-1(GPTs)]
 🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (Gems)               | 💻[[PDF자료]][혜택_2-1(Gems)]
 🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-html)          | 💻[[PDF자료]][혜택_2-1(html)]
-🟥 | [혜택 2-2] | 오파독 스킬팩 - AI 원페이지 숏폼 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-2(Gems)]
 🟥 | [혜택 2-2] | 오파독 스킬팩 - AI 원페이지 숏폼 확장 패키지 (GPTs)           | 💻[[PDF자료]][혜택_2-2(GPTs)]
-🟥 | [혜택 2-3] | 오파독 스킬팩 - AI 광고소재 제작 확장 패키지 (GPTs)           | 💻[[PDF자료]][혜택_2-3]
-🟥 | [혜택 2-3] | 오파독 스킬팩 - AI 광고소재 제작 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-3]
+🟥 | [혜택 2-2] | 오파독 스킬팩 - AI 원페이지 숏폼 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-2(Gems)]
+🟥 | [혜택 2-3] | 오파독 스킬팩 - AI 광고소재 제작 확장 패키지 (GPTs)           | 💻[[PDF자료]][혜택_2-3(GPTs)]
+🟥 | [혜택 2-3] | 오파독 스킬팩 - AI 광고소재 제작 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-3(Gems)]
 2주 | |        | [자료실][혜택_2주차]
 🟧 | [혜택 11] | 오파독 콘텐츠 캘린더 관리 노션 템플릿                          | 💻[[PDF자료]][혜택_11]
 🟧 | [혜택 17] | 오파독 전용 후킹 문구 생성 AI 프로그램                         | 💻[[PDF자료]][혜택_17]
@@ -127,7 +127,7 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [혜택_1주차]: https://drive.google.com/drive/folders/1zMS18vI2uZHLbHAws9rdDYN1obvbWF4B?usp=drive_link
 [혜택_4]:   https://drive.google.com/file/d/1XQh34manisQZihHxgeAKc46Fon2DEziv/view?usp=drive_link
 [혜택_15 ]: https://drive.google.com/file/d/1q4AGsgCjEte3nsoESLC93qMR2jC6xgfM/view?usp=drive_link
-[혜택_2-1(imgs)]: https://drive.google.com/file/d/10rotguh7Ndd2s0ObBVvM1UJq4J6W8RMw/view?usp=drive_link
+[혜택_2-1(GPTs)]: https://drive.google.com/file/d/10rotguh7Ndd2s0ObBVvM1UJq4J6W8RMw/view?usp=drive_link
 [혜택_2-1(Gems)]: https://drive.google.com/file/d/1JAG1Y0Vv50i7AQmjuACP3XsSd7vffGp0/view?usp=drive_link
 [혜택_2-1(html)]: https://drive.google.com/file/d/1Eu6MroQC3IJI1Z2ESbwgHEZlbQ5KtSyl/view?usp=drive_link
 [혜택_2-2(GPTs)]: https://drive.google.com/file/d/1aTsRpju0XWd7dmOR7cKTfC1vly7hXk00/view?usp=drive_link
