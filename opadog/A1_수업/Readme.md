@@ -131,9 +131,9 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [혜택_2-1(Gems)]: https://drive.google.com/file/d/1JAG1Y0Vv50i7AQmjuACP3XsSd7vffGp0/view?usp=drive_link
 [혜택_2-1(html)]: https://drive.google.com/file/d/1Eu6MroQC3IJI1Z2ESbwgHEZlbQ5KtSyl/view?usp=drive_link
 [혜택_2-2(GPTs)]: https://drive.google.com/file/d/1aTsRpju0XWd7dmOR7cKTfC1vly7hXk00/view?usp=drive_link
-[혜택 2-2(Gems)]: https://drive.google.com/file/d/1SYRDgF2F-bLQSisZWaa1WuYCEpjXsKmf/view?usp=drive_link
+[혜택_2-2(Gems)]: https://drive.google.com/file/d/1SYRDgF2F-bLQSisZWaa1WuYCEpjXsKmf/view?usp=drive_link
 [혜택_2-3(GPTs)]: https://drive.google.com/file/d/17a0MammzSwrkuQqX8rGd9UbUzScSVOyH/view?usp=drive_link
-[혜택 2-3(Gems)]: https://drive.google.com/file/d/1WwH9tpDU2N4wIhBvW1lI-r-EH_VzcteM/view?usp=drive_link
+[혜택_2-3(Gems)]: https://drive.google.com/file/d/1WwH9tpDU2N4wIhBvW1lI-r-EH_VzcteM/view?usp=drive_link
 [혜택_2주차]: https://drive.google.com/drive/folders/1j6RmBQvVjjri-PaR2jl5mieUJsbq2R6U?usp=drive_link
 [혜택_11]: https://drive.google.com/file/d/1VaDIa0QsGkYAEGuxDwn9IYebTvS8dTP1/view?usp=drive_link
 [혜택_17]: https://drive.google.com/file/d/1NtB_NJoEUvCygEPtIxLBuhvtXMto_0K7/view?usp=drive_link
