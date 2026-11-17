@@ -89,7 +89,7 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 
 구분 | 번호 | 내용 | 바로가기
 :-----:|-------|-------------------------------|:-----:
-1주차 |          | **계정 세팅 & 웜업 - 카드뉴스, 릴스제작, 광고소재**          | [자료실][혜택_1주차]
+**1주차** |      | **계정 세팅 & 웜업 - 카드뉴스, 릴스제작, 광고소재**          | [자료실][혜택_1주차]
 🟥 | [혜택 4]   | 최신 바이럴 콘텐츠 숏폼 레퍼런스 모음 100종                  | 💻[[PDF자료]][혜택_4]
 🟥 | [혜택 15]  | 2026년 최신 AI 툴 선별 모음집 50종                         | 💻[[PDF자료]][혜택_15]
 🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-이미지)         | 💻[[PDF자료]][혜택_2-1(GPTs)]
@@ -99,30 +99,30 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 🟥 | [혜택 2-2] | 오파독 스킬팩 - AI 원페이지 숏폼 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-2(Gems)]
 🟥 | [혜택 2-3] | 오파독 스킬팩 - AI 광고소재 제작 확장 패키지 (GPTs)           | 💻[[PDF자료]][혜택_2-3(GPTs)]
 🟥 | [혜택 2-3] | 오파독 스킬팩 - AI 광고소재 제작 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-3(Gems)]
-2주 |           | **플랫폼 세팅 & 콘텐츠 실습 - 노션, 후킹문구, Figma**         | [자료실][혜택_2주차]
+**2주** |       | **플랫폼 세팅 & 콘텐츠 실습 - 노션, 후킹문구, Figma**         | [자료실][혜택_2주차]
 🟧 | [혜택 11]  | 오파독 콘텐츠 캘린더 관리 노션 템플릿                          | 💻[[PDF자료]][혜택_11]
 🟧 | [혜택 17]  | 오파독 전용 후킹 문구 생성 AI 프로그램                         | 💻[[PDF자료]][혜택_17]
 🟧 | [혜택 21]  | 오파독 최적화 디자인 툴 노하우                                | 💻[[PDF자료]][혜택_21]
-3주 |           |                                                                 | [자료실][혜택_3주차]
-🟩 | [혜택 16]  | 파트너 외주사 최적화 선별 체크리스트                              | 💻[[PDF자료]][혜택_16]
+**3주** |       | **계정관리 & 수익화 진입 - 오파독AI MCP**                     | [자료실][혜택_3주차]
 🟩 | [혜택 5]   | 수익화 성공률 300% UP AI 세일즈봇 & 가이드북                   | 💻[[PDF자료]][혜택_5]
-🟩 | [혜택 9]   | 오파독 단건 & 다건 견적서 마스터 템플릿                           | 💻[[PDF자료]][혜택_9]
+🟩 | [혜택 6]   | 오파독 최적화 고객 응대 AI 프로그램 C_S 봇                     | 💻[[PDF자료]][혜택_6]
+🟩 | [혜택 7]   | 오파독 최적화 광고 제안서 퍼펙트 템플릿                         | 💻[[PDF자료]][혜택_7]
+🟩 | [혜택 8 ]  | 오파독 최신화 실제 계약서 템플릿                               | 💻[[PDF자료]][혜택_8 ]
+🟩 | [혜택 9]   | 오파독 단건 & 다건 견적서 마스터 템플릿                         | 💻[[PDF자료]][혜택_9]
+🟩 | [혜택 12]  | 월 1억 오파독 고객사 관리(CRM) 노션 템플릿                      | 💻[[PDF자료]][혜택_12]
+🟩 | [혜택 16]  | 파트너 외주사 최적화 선별 체크리스트                            | 💻[[PDF자료]][혜택_16]
 🟩 | [혜택 18]  | 오파독 외주 플랫폼 상세페이지 최적화 템플릿                      | 💻[[PDF자료]][혜택_18]
-🟩 | [혜택 8 ]  | 오파독 최신화 실제 계약서 템플릿                                    | 💻[[PDF자료]][혜택_8 ]
-🟩 | [혜택 6]   | 오파독 최적화 고객 응대 AI 프로그램 C_S 봇                        | 💻[[PDF자료]][혜택_6]
-🟩 | [혜택 7]   | 오파독 최적화 광고 제안서 퍼펙트 템플릿                           | 💻[[PDF자료]][혜택_7]
 🚀 | [VOD 1]   | 오파독 AI 견적서 생성기 사용 가이드 VOD                          | 💻[[PDF자료]][VOD_1]
 🚀 | [VOD 2]   | 오파독 AI 계약서 생성기 사용 가이드 VOD                          | 💻[[PDF자료]][VOD_2]
-🚀 | [VOD 3]   | 오파독 AI 세일즈봇 사용 가이드 VOD                                | 💻[[PDF자료]][VOD_3]
-🚀 | [VOD 4]   | 오파독 AI C_S 봇 사용 가이드 VOD                                   | 💻[[PDF자료]][VOD_4]
-🟩 | [혜택 12]  | 월 1억 오파독 고객사 관리(CRM) 노션 템플릿                      | 💻[[PDF자료]][혜택_12]
-🚀 | [프리미엄 VOD] | 오파독 AI 이메일 대량 발송 가이드 VOD                    | 💻[[PDF자료]][프리미엄_VOD]
-🚀 | [프리미엄 1]   | 오파독 AI 캐릭터 실사화 특별 확장 패키지                  | 💻[[PDF자료]][프리미엄_1]
-🚀 | [프리미엄 2]   | 오파독 AI 광고 모델 특별 제작 패키지                       | 💻[[PDF자료]][프리미엄_2]
-🚀 | [프리미엄 3]   | 에이전시 전용 홈페이지 제작 AI 프로그램                   | 💻[[PDF자료]][프리미엄_3]
-🚀 | [프리미엄 4]   | 에이전시 제안 이메일 대량 발송 AI 프로그램               | 💻[[PDF자료]][프리미엄_4]
-🚀 | [프리미엄 5]   | 에이전시 제안서 자동 작성 AI 프로그램                      | 💻[[PDF자료]][프리미엄_5]
-🚀 | [프리미엄 VOD] | 오파독 AI 광고 제안서 생성기 사용 가이드 VOD            | 💻[[PDF자료]][프리미엄_VOD]
+🚀 | [VOD 3]   | 오파독 AI 세일즈봇 사용 가이드 VOD                              | 💻[[PDF자료]][VOD_3]
+🚀 | [VOD 4]   | 오파독 AI C_S 봇 사용 가이드 VOD                               | 💻[[PDF자료]][VOD_4]
+🚀 | [프리미엄 1]   | 오파독 AI 캐릭터 실사화 특별 확장 패키지                     | 💻[[PDF자료]][프리미엄_1]
+🚀 | [프리미엄 2]   | 오파독 AI 광고 모델 특별 제작 패키지                        | 💻[[PDF자료]][프리미엄_2]
+🚀 | [프리미엄 3]   | 에이전시 전용 홈페이지 제작 AI 프로그램                      | 💻[[PDF자료]][프리미엄_3]
+🚀 | [프리미엄 4]   | 에이전시 제안 이메일 대량 발송 AI 프로그램                    | 💻[[PDF자료]][프리미엄_4]
+🚀 | [프리미엄 5]   | 에이전시 제안서 자동 작성 AI 프로그램                        | 💻[[PDF자료]][프리미엄_5]
+🚀 | [프리미엄 VOD] | 오파독 AI 광고 제안서 생성기 사용 가이드 VOD                 | 💻[[PDF자료]][프리미엄_VOD_1]
+🚀 | [프리미엄 VOD] | 오파독 AI 이메일 대량 발송 가이드 VOD                       | 💻[[PDF자료]][프리미엄_VOD_2]
 
 [혜택_1주차]: https://drive.google.com/drive/folders/1zMS18vI2uZHLbHAws9rdDYN1obvbWF4B?usp=drive_link
 [혜택_4]:   https://drive.google.com/file/d/1XQh34manisQZihHxgeAKc46Fon2DEziv/view?usp=drive_link
@@ -139,25 +139,25 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [혜택_17]: https://drive.google.com/file/d/1NtB_NJoEUvCygEPtIxLBuhvtXMto_0K7/view?usp=drive_link
 [혜택_21]: https://drive.google.com/file/d/1Qn8eTpbaeaH6Hq0f2lOmE_jmIp7Q-WP9/view?usp=drive_link
 [혜택_3주차]: https://drive.google.com/drive/folders/1lONf1RyFW8iPbQWc3G-nl-UxXk_uRQcF?usp=drive_link
-[혜택_16]: 링크
-[혜택_5]: 링크
-[혜택_9]: 링크
-[혜택_18]: 링크
-[혜택_8 ]: 링크
-[혜택_6]: 링크
-[혜택_7]: 링크
-[VOD_1]: 링크
-[VOD_2]: 링크
-[VOD_3]: 링크
-[VOD_4]: 링크
-[혜택_12]: 링크
-[프리미엄_VOD]: 링크
-[프리미엄_1]: 링크
-[프리미엄_2]: 링크
-[프리미엄_3]: 링크
-[프리미엄_4]: 링크
-[프리미엄_5]: 링크
-[프리미엄_VOD]: 링크
+[혜택_5]:  https://drive.google.com/file/d/1eLFlg4vZwsKZmXfrW41cuctjg4uEVty_/view?usp=drive_link
+[혜택_6]:  https://drive.google.com/file/d/1WWvya8ItO-sNm7zAjEvihRD-HVSvAaEv/view?usp=drive_link
+[혜택_7]:  https://drive.google.com/file/d/1oZknpnQEpPv7cYaClMPUlhriv9LnA8xN/view?usp=drive_link
+[혜택_8]:  https://drive.google.com/file/d/1wJil746412GvxRSG8vXtpPTGe5rClUAZ/view?usp=drive_link
+[혜택_9]:  https://drive.google.com/file/d/14cNwZ5WSgUBkTZC9vOW21W_Vc9kC8l5I/view?usp=drive_link
+[혜택_12]: https://drive.google.com/file/d/1HFPYcdJJH733-ZxH5nDsAEBfvGYkmmU1/view?usp=drive_link
+[혜택_16]: https://drive.google.com/file/d/1azvzoyDQWtp7K_zBCUB8QlXSxyCYp4Aw/view?usp=drive_link
+[혜택_18]: https://drive.google.com/file/d/1a6J2C-j2XdkMNiYW51eMnXVmTmUuoYe4/view?usp=drive_link
+[VOD_1]:  https://drive.google.com/file/d/1piBdPyrCt98QdGfwQ8wMB0cZ2YWVJXNu/view?usp=drive_link
+[VOD_2]:  https://drive.google.com/file/d/1KXljR6WpDISuYilk7uvG8vv3f3RyVysX/view?usp=drive_link
+[VOD_3]:  https://drive.google.com/file/d/1tDUj7a9lNVeoS1JSAIOVAWztASITykrV/view?usp=drive_link
+[VOD_4]:  https://drive.google.com/file/d/1ecxPDfrs1LyZnR0RvFZH8vvu-93uBaX6/view?usp=drive_link
+[프리미엄_1]: https://drive.google.com/file/d/1GmjtSmiebLQhzXJvkXG_Rw12O4D1Zodp/view?usp=drive_link
+[프리미엄_2]: https://drive.google.com/file/d/1rKUrtIvJ-4khxxo-N6HLOIiiPLIPx37a/view?usp=drive_link
+[프리미엄_3]: https://drive.google.com/file/d/1ckhMUPkjW4847b45xbtNbTsq43WOjFqH/view?usp=drive_link
+[프리미엄_4]: https://drive.google.com/file/d/1lCQYEnhym6rIYOoSrPSdp_jjBkPrgEkF/view?usp=drive_link
+[프리미엄_5]: https://drive.google.com/file/d/1TmsrEtB7Uh20x9MjnJWmqFhLKYvjsTz6/view?usp=drive_link
+[프리미엄_VOD_1]: https://drive.google.com/file/d/1-dS9iq9Gyf0Pexuel41Qw-h42jK74yXx/view?usp=drive_link
+[프리미엄_VOD_2]: https://drive.google.com/file/d/1CfOlyycY4_VkI1yAbx1QLX1tdnOJJ6ns/view?usp=drive_link
 [혜택_4주차]: https://drive.google.com/drive/folders/10IBcjeqh3hfXTXhyLTPZR9tWP4ktELhJ?usp=drive_link
              
 
