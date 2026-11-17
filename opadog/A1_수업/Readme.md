@@ -124,7 +124,6 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 🚀 | [프리미엄 5]   | 에이전시 제안서 자동 작성 AI 프로그램                      | 💻[[PDF자료]][프리미엄_5]
 🚀 | [프리미엄 VOD] | 오파독 AI 광고 제안서 생성기 사용 가이드 VOD            | 💻[[PDF자료]][프리미엄_VOD]
 
-
 [혜택_1주차]: https://drive.google.com/drive/folders/1zMS18vI2uZHLbHAws9rdDYN1obvbWF4B?usp=drive_link
 [혜택_4]:   https://drive.google.com/file/d/1XQh34manisQZihHxgeAKc46Fon2DEziv/view?usp=drive_link
 [혜택_15 ]: https://drive.google.com/file/d/1q4AGsgCjEte3nsoESLC93qMR2jC6xgfM/view?usp=drive_link
