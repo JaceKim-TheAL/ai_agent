@@ -90,15 +90,28 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 구분 | 번호 | 내용 | 바로가기
 :-----:|-------|-------------------------------|:-----:
 1주차 | - | 웜업      | [자료실][혜택_1주차]
-🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-이미지)          | 💻[[PDF자료]][혜택_2-1]
-🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-html)            | 💻[[PDF자료]][혜택_2-1]
-🟥 | [혜택 15]  | 2026년 최신 AI 툴 선별 모음집 50종                                | 💻[[PDF자료]][혜택_15]
-🟥 | [혜택 2-2] | 오파독 스킬팩 - AI 원페이지 숏폼 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-2]
-🟥 | [혜택 2-2] | 오파독 스킬팩 - AI 원페이지 숏폼 확장 패키지 (GPTs)            | 💻[[PDF자료]][혜택_2-2]
-🟥 | [혜택 4]   | 최신 바이럴 콘텐츠 숏폼 레퍼런스 모음 100종                    | 💻[[PDF자료]][혜택_4]
-🟥 | [혜택 2-3] | 오파독 스킬팩 -  AI 광고소재 제작 확장 패키지 (Gems)          | 💻[[PDF자료]][혜택_2-3]
-🟥 | [혜택 2-3] | 오파독 스킬팩 -  AI 광고소재 제작 확장 패키지 (GPTs)           | 💻[[PDF자료]][혜택_2-3]
-🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (Gems)                 | 💻[[PDF자료]][혜택_2-1]
+🟥 | [혜택 4]   | 최신 바이럴 콘텐츠 숏폼 레퍼런스 모음 100종                  | 💻[[PDF자료]][혜택_4]
+🟥 | [혜택 15]  | 2026년 최신 AI 툴 선별 모음집 50종                         | 💻[[PDF자료]][혜택_15]
+🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-이미지)         | 💻[[PDF자료]][혜택_2-1]
+🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-html)          | 💻[[PDF자료]][혜택_2-1]
+🟥 | [혜택 2-2] | 오파독 스킬팩 - AI 원페이지 숏폼 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-2(Gems)]
+🟥 | [혜택 2-2] | 오파독 스킬팩 - AI 원페이지 숏폼 확장 패키지 (GPTs)           | 💻[[PDF자료]][혜택_2-2(GPTs)]
+🟥 | [혜택 2-3] | 오파독 스킬팩 - AI 광고소재 제작 확장 패키지 (Gems)           | 💻[[PDF자료]][혜택_2-3]
+🟥 | [혜택 2-3] | 오파독 스킬팩 - AI 광고소재 제작 확장 패키지 (GPTs)           | 💻[[PDF자료]][혜택_2-3]
+🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (Gems)               | 💻[[PDF자료]][혜택_2-1]
+
+[혜택_1주차]: https://drive.google.com/drive/folders/1zMS18vI2uZHLbHAws9rdDYN1obvbWF4B?usp=drive_link
+[혜택_4]:   https://drive.google.com/file/d/1XQh34manisQZihHxgeAKc46Fon2DEziv/view?usp=drive_link
+[혜택_15 ]: https://drive.google.com/file/d/1q4AGsgCjEte3nsoESLC93qMR2jC6xgfM/view?usp=drive_link
+
+[혜택 2-1(Gems)]: https://drive.google.com/file/d/1JAG1Y0Vv50i7AQmjuACP3XsSd7vffGp0/view?usp=drive_link 
+[혜택_2-1(GPTs)]: https://drive.google.com/file/d/10rotguh7Ndd2s0ObBVvM1UJq4J6W8RMw/view?usp=drive_link
+[혜택_2-2]: 링크
+[혜택_2-2]: 링크
+[혜택_2-3]: 링크
+[혜택_2-3]: 링크
+[혜택_2-1]: 링크
+
 2주 | |        | [자료실][혜택_2주차]
 🟧 | [혜택 21] | 오파독 최적화 디자인 툴 노하우                                      | 💻[[PDF자료]][혜택_21]
 🟧 | [혜택 11] | 오파독 콘텐츠 캘린더 관리 노션 템플릿                             | 💻[[PDF자료]][혜택_11]
@@ -124,16 +137,7 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 🚀 | [프리미엄 5]   | 에이전시 제안서 자동 작성 AI 프로그램                      | 💻[[PDF자료]][프리미엄_5]
 🚀 | [프리미엄 VOD] | 오파독 AI 광고 제안서 생성기 사용 가이드 VOD            | 💻[[PDF자료]][프리미엄_VOD]
 
-[혜택_1주차]: https://drive.google.com/drive/folders/1zMS18vI2uZHLbHAws9rdDYN1obvbWF4B?usp=drive_link
-[혜택 2-1]: 링크
-[혜택_2-1]: 링크
-[혜택_15 ]: [링크](https://drive.google.com/drive/folders/10IBcjeqh3hfXTXhyLTPZR9tWP4ktELhJ?usp=drive_link)
-[혜택_2-2]: 링크
-[혜택_2-2]: 링크
-[혜택_4]: 링크
-[혜택_2-3]: 링크
-[혜택_2-3]: 링크
-[혜택_2-1]: 링크
+
 [혜택_2주차]: https://drive.google.com/drive/folders/1j6RmBQvVjjri-PaR2jl5mieUJsbq2R6U?usp=drive_link
 [혜택_21]: 링크
 [혜택_11]: 링크
