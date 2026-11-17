@@ -89,7 +89,7 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 
 구분 | 번호 | 내용 | 바로가기
 :-----:|-------|-------------------------------|-----------------------------
-1주 | 
+1주 | [자료실]
 🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-이미지)          | 💻[[PDF자료]][혜택 2-1]
 🟥 | [혜택 2-1] | 오파독 스킬팩 - AI 카드뉴스 확장 패키지 (GPTs-html)            | 💻[[PDF자료]][혜택 2-1]
 🟥 | [혜택 15 ] | 2026년 최신 AI 툴 선별 모음집 50종                                | 💻[[PDF자료]][혜택 15 ]
@@ -124,20 +124,21 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 🚀 | [프리미엄 5]     | 에이전시 제안서 자동 작성 AI 프로그램                      | 💻[[PDF자료]][프리미엄 5]
 🚀 | [프리미엄 VOD] | 오파독 AI 광고 제안서 생성기 사용 가이드 VOD            | 💻[[PDF자료]][프리미엄 VOD]
 
+[혜택_1주차]: https://drive.google.com/drive/folders/1zMS18vI2uZHLbHAws9rdDYN1obvbWF4B?usp=drive_link
 [혜택 2-1]: 링크
 [혜택 2-1]: 링크
-[혜택 15 ]: 링크
+[혜택 15 ]: [링크](https://drive.google.com/drive/folders/10IBcjeqh3hfXTXhyLTPZR9tWP4ktELhJ?usp=drive_link)
 [혜택 2-2]: 링크
 [혜택 2-2]: 링크
 [혜택 4]: 링크
 [혜택 2-3]: 링크
 [혜택 2-3]: 링크
 [혜택 2-1]: 링크
-
+[혜택_2주차]: https://drive.google.com/drive/folders/1j6RmBQvVjjri-PaR2jl5mieUJsbq2R6U?usp=drive_link
 [혜택 21]: 링크
 [혜택 11]: 링크
 [혜택 17]: 링크
-
+[혜택_3주차]: https://drive.google.com/drive/folders/1lONf1RyFW8iPbQWc3G-nl-UxXk_uRQcF?usp=drive_link
 [혜택 16]: 링크
 [혜택 5]: 링크
 [혜택 9]: 링크
@@ -157,7 +158,7 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [프리미엄 4]: 링크
 [프리미엄 5]: 링크
 [프리미엄 VOD]: 링크
-
+[혜택_4주차]: https://drive.google.com/drive/folders/10IBcjeqh3hfXTXhyLTPZR9tWP4ktELhJ?usp=drive_link
              
 
 <br/>
