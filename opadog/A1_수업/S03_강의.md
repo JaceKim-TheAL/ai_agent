@@ -11,6 +11,7 @@
     <td><a href="S05_강의.md">강의5</a></td>
     <td><a href="S06_강의.md">강의6</a></td>
     <td><a href="S07_강의.md">강의7</a></td>
+    <td><a href="S08_강의.md">TIPs</a></td>
   </tr>
 </table>
 
