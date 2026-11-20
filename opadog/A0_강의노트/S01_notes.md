@@ -1,3 +1,19 @@
+🏠 > [ai_agent](../../) > [opadog](../) > **오파독AI | Summary Notes 1**
+
+<table>
+  <tr>
+    <td><a href="./">[오파독]</a></td>
+    <td><b href="S01_notes.md">노트1</b></td>
+    <td><a href="S02_notes.md">노트2</a></td>
+    <td><a href="S03_notes.md">노트3</a></td>
+    <td><a href="S04_notes.md">노트4</a></td>
+    <td><a href="S05_notes.md">노트5</a></td>
+    <td><a href="S06_notes.md">노트6</a></td>
+    <td><a href="S07_notes.md">노트7</a></td>
+  </tr>
+</table>
+
+---
 # 오파독 1주차 정규강의 — GitHub 강의 요약 노트
 
 > **오늘은 인스타를 보는 게 전부입니다.**  

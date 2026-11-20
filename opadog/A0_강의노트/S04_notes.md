@@ -1,3 +1,19 @@
+🏠 > [ai_agent](../../) > [opadog](../) > **오파독AI | Summary Notes 4**
+
+<table>
+  <tr>
+    <td><a href="./">[오파독]</a></td>
+    <td><a href="S01_notes.md">노트1</a></td>
+    <td><a href="S02_notes.md">노트2</a></td>
+    <td><a href="S03_notes.md">노트3</a></td>
+    <td><b href="S04_notes.md">노트4</b></td>
+    <td><a href="S05_notes.md">노트5</a></td>
+    <td><a href="S06_notes.md">노트6</a></td>
+    <td><a href="S07_notes.md">노트7</a></td>
+  </tr>
+</table>
+
+---
 # 오파독 4기 · 2주차 특별강의 요약 노트
 
 > **문을 하나씩 더 달아봅니다 — MCP 연결 & 업로드 자동화**  
