@@ -1,4 +1,4 @@
-🏠 > [ai_agent](../../) > [opadog](../) > **오파도AI | 수업**
+🏠 > [ai_agent](../../) > [opadog](../) > **오파독AI | 수업**
 
 <table>
   <tr>
