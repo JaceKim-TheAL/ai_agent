@@ -109,7 +109,7 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 🟩 | [혜택 6]   | 오파독 최적화 고객 응대 AI 프로그램 C_S 봇                  | 💻[[PDF자료]][혜택_6]
 🟩 | [혜택 7]   | 오파독 최적화 광고 제안서 퍼펙트 템플릿                      | 💻[[PDF자료]][혜택_7]
 🟩 | [혜택 8 ]  | 오파독 최신화 실제 계약서 템플릿                            | 💻[[PDF자료]][혜택_8 ]
-🟩 | [혜택 9]   | 오파독 단건 & 다건 견적서 마스터 템플릿          \           | 💻[[PDF자료]][혜택_9]
+🟩 | [혜택 9]   | 오파독 단건 & 다건 견적서 마스터 템플릿                      | 💻[[PDF자료]][혜택_9]
 🟩 | [혜택 12]  | 월 1억 오파독 고객사 관리(CRM) 노션 템플릿                   | 💻[[PDF자료]][혜택_12]
 🟩 | [혜택 16]  | 파트너 외주사 최적화 선별 체크리스트                         | 💻[[PDF자료]][혜택_16]
 🟩 | [혜택 18]  | 오파독 외주 플랫폼 상세페이지 최적화 템플릿                   | 💻[[PDF자료]][혜택_18]
@@ -135,8 +135,8 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 🅿️ | [프리미엄 7-2] | AI 구글 광고 자동화 에이전트                             | 💻[[PDF자료]][프리미엄_7_2] 
 
 [혜택_1주차]: https://drive.google.com/drive/folders/1zMS18vI2uZHLbHAws9rdDYN1obvbWF4B?usp=drive_link
-[혜택_4]:   https://drive.google.com/file/d/1XQh34manisQZihHxgeAKc46Fon2DEziv/view?usp=drive_link
-[혜택_15 ]: https://drive.google.com/file/d/1q4AGsgCjEte3nsoESLC93qMR2jC6xgfM/view?usp=drive_link
+[혜택_4]:    https://drive.google.com/file/d/1XQh34manisQZihHxgeAKc46Fon2DEziv/view?usp=drive_link
+[혜택_15 ]:  https://drive.google.com/file/d/1q4AGsgCjEte3nsoESLC93qMR2jC6xgfM/view?usp=drive_link
 [혜택_2-1(GPTs)]: https://drive.google.com/file/d/10rotguh7Ndd2s0ObBVvM1UJq4J6W8RMw/view?usp=drive_link
 [혜택_2-1(Gems)]: https://drive.google.com/file/d/1JAG1Y0Vv50i7AQmjuACP3XsSd7vffGp0/view?usp=drive_link
 [혜택_2-1(html)]: https://drive.google.com/file/d/1Eu6MroQC3IJI1Z2ESbwgHEZlbQ5KtSyl/view?usp=drive_link
@@ -144,11 +144,11 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [혜택_2-2(Gems)]: https://drive.google.com/file/d/1SYRDgF2F-bLQSisZWaa1WuYCEpjXsKmf/view?usp=drive_link
 [혜택_2-3(GPTs)]: https://drive.google.com/file/d/17a0MammzSwrkuQqX8rGd9UbUzScSVOyH/view?usp=drive_link
 [혜택_2-3(Gems)]: https://drive.google.com/file/d/1WwH9tpDU2N4wIhBvW1lI-r-EH_VzcteM/view?usp=drive_link
-[혜택_2주차]: https://drive.google.com/drive/folders/1j6RmBQvVjjri-PaR2jl5mieUJsbq2R6U?usp=drive_link
-[혜택_11]: https://drive.google.com/file/d/1VaDIa0QsGkYAEGuxDwn9IYebTvS8dTP1/view?usp=drive_link
-[혜택_17]: https://drive.google.com/file/d/1NtB_NJoEUvCygEPtIxLBuhvtXMto_0K7/view?usp=drive_link
-[혜택_21]: https://drive.google.com/file/d/1Qn8eTpbaeaH6Hq0f2lOmE_jmIp7Q-WP9/view?usp=drive_link
-[혜택_3주차]: https://drive.google.com/drive/folders/1lONf1RyFW8iPbQWc3G-nl-UxXk_uRQcF?usp=drive_link
+[혜택_2주차]:  https://drive.google.com/drive/folders/1j6RmBQvVjjri-PaR2jl5mieUJsbq2R6U?usp=drive_link
+[혜택_11]:    https://drive.google.com/file/d/1VaDIa0QsGkYAEGuxDwn9IYebTvS8dTP1/view?usp=drive_link
+[혜택_17]:    https://drive.google.com/file/d/1NtB_NJoEUvCygEPtIxLBuhvtXMto_0K7/view?usp=drive_link
+[혜택_21]:    https://drive.google.com/file/d/1Qn8eTpbaeaH6Hq0f2lOmE_jmIp7Q-WP9/view?usp=drive_link
+[혜택_3주차]:  https://drive.google.com/drive/folders/1lONf1RyFW8iPbQWc3G-nl-UxXk_uRQcF?usp=drive_link
 [혜택_5]:  https://drive.google.com/file/d/1eLFlg4vZwsKZmXfrW41cuctjg4uEVty_/view?usp=drive_link
 [혜택_6]:  https://drive.google.com/file/d/1WWvya8ItO-sNm7zAjEvihRD-HVSvAaEv/view?usp=drive_link
 [혜택_7]:  https://drive.google.com/file/d/1oZknpnQEpPv7cYaClMPUlhriv9LnA8xN/view?usp=drive_link
