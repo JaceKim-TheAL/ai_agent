@@ -125,6 +125,17 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 🅿️ | [프리미엄 VOD] | 오파독 AI 광고 제안서 생성기 사용 가이드 VOD                 | 💻[[PDF자료]][프리미엄_VOD_1]
 🅿️ | [프리미엄 VOD] | 오파독 AI 이메일 대량 발송 가이드 VOD                       | 💻[[PDF자료]][프리미엄_VOD_2]
 
+
+**4주** |       | **수익화 실전 & AI 자동화 - 오파독AI MCP**                  | 🗂[[드라이브4]][혜택_4주차]
+🟪 | [혜택 +]   | [당일구매혜택] 스토리보드 AI & AI 제작 에이전트               | 💻[[PDF자료]][혜택_당일구매혜택]
+🟪 | [혜택 +]   | [데드존가이드] 인스타그램 릴스 데드존 가이드                  | 💻[[PDF자료]][혜택_데드존가이드]
+🟪 | [혜택 3]   | 오파독X수강생 공동 포트폴리오                               | 💻[[PDF자료]][혜택_3]
+🟪 | [혜택 10]  | 운영 대행 견적서 마스터 템플릿                              | 💻[[PDF자료]][혜택_10]
+🟪 | [혜택 19]  | 외주 포트폴리오 최적화 템플릿                               | 💻[[PDF자료]][혜택_19]
+🅿️ | [프리미엄 6]   | AI 프로그램 개발 VOD                                   | 💻[[PDF자료]][프리미엄_6]
+🅿️ | [프리미엄 7-1] | AI 메타 광고 자동화 에이전트                             | 💻[[PDF자료]][프리미엄_7_1]
+🅿️ | [프리미엄 7-2] | AI 구글 광고 자동화 에이전트                             | 💻[[PDF자료]][프리미엄_7_2] 
+
 [혜택_1주차]: https://drive.google.com/drive/folders/1zMS18vI2uZHLbHAws9rdDYN1obvbWF4B?usp=drive_link
 [혜택_4]:   https://drive.google.com/file/d/1XQh34manisQZihHxgeAKc46Fon2DEziv/view?usp=drive_link
 [혜택_15 ]: https://drive.google.com/file/d/1q4AGsgCjEte3nsoESLC93qMR2jC6xgfM/view?usp=drive_link
@@ -160,8 +171,15 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [프리미엄_VOD_1]: https://drive.google.com/file/d/1-dS9iq9Gyf0Pexuel41Qw-h42jK74yXx/view?usp=drive_link
 [프리미엄_VOD_2]: https://drive.google.com/file/d/1CfOlyycY4_VkI1yAbx1QLX1tdnOJJ6ns/view?usp=drive_link
 [혜택_4주차]: https://drive.google.com/drive/folders/10IBcjeqh3hfXTXhyLTPZR9tWP4ktELhJ?usp=drive_link
+[혜택_당일구매혜택]: https://drive.google.com/file/d/1Ig67FQIqYQUNrDGZJKS3U-lG1FUP84Dl/view?usp=drive_link
+[혜택_데드존가이드]: https://drive.google.com/file/d/1LUANGal_oArMjd5JxOywUU27xdtgtOgF/view?usp=drive_link
+[혜택_3]:          https://drive.google.com/file/d/1qqBJWWrPknYp_F-G9IYEDww5PFw8vPiu/view?usp=drive_link  
+[혜택_10]:         https://drive.google.com/file/d/1C6OYUfp9euyJJBqTlq1Hseb_W2-0D22w/view?usp=drive_link
+[혜택_19]:         https://drive.google.com/file/d/1dxxGxGz9WDSuxJCk681XN05RxNX44a5m/view?usp=drive_link
+[프리미엄_6]:      https://drive.google.com/file/d/1-PVKVWyEpglYDO44IBqPVanH4Al0cFrs/view?usp=drive_link 
+[프리미엄_7_1]:    https://drive.google.com/file/d/1uwcxn7RKteWEa9F8WbspZm8oRqsAI4ln/view?usp=drive_link
+[프리미엄_7_2]:    https://drive.google.com/file/d/1AbCBnJPF7EdU41RwWN8hoDlPf9ewJ64E/view?usp=drive_link
              
-
 <br/>
 
 [[TOP]](#index)
