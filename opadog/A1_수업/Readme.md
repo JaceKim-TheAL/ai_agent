@@ -68,18 +68,18 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [강의자료3]: https://drive.google.com/file/d/1F57m-LFPskZeVa6GWb0EFHyiI9f6_00h/view?usp=drive_link
 [강의자료4]: https://drive.google.com/file/d/1jLSu1BBcZfhLIoNlsS0_z167laowYZEF/view?usp=drive_link
 [강의자료5]: https://drive.google.com/file/d/1tOQ1JdGCAVyBHj5YbF4PxuM_qfJeyZrS/view?usp=drive_link
-[강의자료6]: pdf
+[강의자료6]: https://drive.google.com/file/d/1t2k-TXVkEmkDwqZcWtqEAGRzR-cboF-r/view?usp=drive_link
 [강의자료7]: pdf
 
 <!-- 강의 다시보기 -->
-[오파독OT]: https://www.youtube.com/watch?v=Xovh7WHsu4s
-[1주차강의]: https://www.youtube.com/watch?v=c2HATlMxsvU
-[1주차특강]: https://www.youtube.com/watch?v=RjUa2WqnvZg
-[2주차강의]: https://youtu.be/dOjaM9dC5bw
-[2주차특강]: https://youtu.be/H8vpH-mFml8
-[3주차강의]: https://youtu.be/9SM9Vx0Cc8E
-[3주차특강]: https://youtu.be/
-[4주차강의]: https://youtu.be/
+[오파독OT]: https://youtu.be/Xovh7WHsu4s
+[1주차강의]: https://moneyroot.co.kr/classes/view?order_id=79198&lecture_id=308402
+[1주차특강]: https://moneyroot.co.kr/classes/view?order_id=79198&lecture_id=308406
+[2주차강의]: https://moneyroot.co.kr/classes/view?order_id=79198&lecture_id=308403
+[2주차특강]: https://moneyroot.co.kr/classes/view?order_id=79198&lecture_id=308407
+[3주차강의]: https://moneyroot.co.kr/classes/view?order_id=79198&lecture_id=308404
+[3주차특강]: https://moneyroot.co.kr/classes/view?order_id=79198&lecture_id=308408
+[4주차강의]: https://moneyroot.co.kr/
 
 <br/>
 
