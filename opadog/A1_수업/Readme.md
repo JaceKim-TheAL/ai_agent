@@ -70,7 +70,7 @@ NO   | 강의순서  | 강의주제 | 강의노트 | PDF자료 | 유튜브링크
 [강의자료4]: https://drive.google.com/file/d/1jLSu1BBcZfhLIoNlsS0_z167laowYZEF/view?usp=drive_link
 [강의자료5]: https://drive.google.com/file/d/1tOQ1JdGCAVyBHj5YbF4PxuM_qfJeyZrS/view?usp=drive_link
 [강의자료6]: https://drive.google.com/file/d/1t2k-TXVkEmkDwqZcWtqEAGRzR-cboF-r/view?usp=drive_link
-[강의자료7]: pdf
+[강의자료7]: https://drive.google.com/file/d/1dEWs_j1x_0Dz7hnar6sSPZ1DDFTjEwcV/view?usp=drive_link
 
 <!-- 강의 다시보기 -->
 [오파독OT]: https://youtu.be/Xovh7WHsu4s
