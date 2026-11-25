@@ -11,3 +11,12 @@
 <img src="./images/logo_for_Red.png" width="100"><br/>
 <img src="./images/logo_for_White.png" width="100"><br/>
 
+
+Eurostile Extended Bold
+
+STANDON 
+AGENT 를 
+
+MEDIA, STUDIO, AI Lab, TECH, CRAFT, BIGDATA, PARTNERS
+
+
